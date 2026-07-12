@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CATÁLOGO — CSSBuy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@400;700&family=Inter+Tight:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F1EDE4;
+  --paper-2:#E4DED1;
+  --ink:#14120F;
+  --ink-soft:#6B655A;
+  --stamp:#C4332B;
+  --stamp-dark:#8E241E;
+  --blue:#2B4670;
+  --line:#C9C1B0;
+  --tape:#E8C55B;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--paper);
+  background-image:
+    repeating-linear-gradient(0deg,transparent 0 27px,rgba(20,18,15,.035) 27px 28px),
+    radial-gradient(circle at 20% 0%,rgba(196,51,43,.05),transparent 60%);
+  color:var(--ink);
+  font-family:'Inter Tight',system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+
+/* ---------- HEADER : albarán de aduanas ---------- */
+header{
+  border-bottom:2px solid var(--ink);
+  background:var(--paper);
+  position:sticky;top:0;z-index:50;
+}
+.manifest{
+  max-width:1500px;margin:0 auto;padding:18px 20px 12px;
+  display:flex;gap:20px;align-items:flex-end;flex-wrap:wrap;
+}
+.logo{
+  font-family:'Anton',sans-serif;
+  font-size:clamp(34px,5.2vw,64px);
+  line-height:.86;letter-spacing:-.02em;text-transform:uppercase;
+}
+.logo span{color:var(--stamp)}
+.meta{
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  color:var(--ink-soft);text-transform:uppercase;letter-spacing:.14em;
+  line-height:1.7;padding-bottom:4px;
+}
+.meta b{color:var(--ink)}
+.stamp{
+  margin-left:auto;align-self:center;
+  border:2px solid var(--stamp);color:var(--stamp);
+  font-family:'JetBrains Mono',monospace;font-weight:700;font-size:11px;
+  letter-spacing:.18em;text-transform:uppercase;
+  padding:8px 12px;transform:rotate(-6deg);
+  opacity:.85;
+}
+.toolbar{
+  border-top:1px solid var(--line);
+  max-width:1500px;margin:0 auto;padding:10px 20px;
+  display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+}
+input[type=search],select{
+  font-family:'JetBrains Mono',monospace;font-size:13px;
+  background:transparent;border:1px solid var(--ink);
+  padding:9px 12px;color:var(--ink);border-radius:0;
+}
+input[type=search]{flex:1;min-width:200px}
+input[type=search]:focus,select:focus{outline:2px solid var(--stamp);outline-offset:1px}
+.count{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink-soft);margin-left:auto}
+
+/* ---------- BRANDS RAIL ---------- */
+.rail{
+  max-width:1500px;margin:0 auto;padding:0 20px 12px;
+  display:flex;gap:6px;overflow-x:auto;scrollbar-width:thin;
+}
+.chip{
+  flex:0 0 auto;
+  font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;
+  text-transform:uppercase;padding:6px 10px;border:1px solid var(--line);
+  background:var(--paper-2);cursor:pointer;white-space:nowrap;
+}
+.chip:hover{border-color:var(--ink)}
+.chip.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+
+/* ---------- GRID ---------- */
+main{max-width:1500px;margin:0 auto;padding:24px 20px 80px}
+.brand-head{
+  font-family:'Anton',sans-serif;text-transform:uppercase;
+  font-size:clamp(28px,4vw,52px);line-height:1;
+  padding:26px 0 12px;border-bottom:2px solid var(--ink);
+  margin:26px 0 18px;display:flex;align-items:baseline;gap:14px;
+}
+.brand-head small{
+  font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:400;
+  color:var(--ink-soft);letter-spacing:.14em;margin-left:auto;
+}
+.grid{
+  display:grid;gap:14px;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+}
+.card{
+  border:1px solid var(--line);background:var(--paper-2);
+  display:flex;flex-direction:column;
+  transition:transform .12s ease,box-shadow .12s ease,border-color .12s;
+}
+.card:hover{
+  transform:translate(-2px,-2px);
+  box-shadow:4px 4px 0 var(--ink);
+  border-color:var(--ink);
+}
+.thumb{
+  aspect-ratio:1/1;background:var(--paper);
+  display:flex;align-items:center;justify-content:center;
+  border-bottom:1px solid var(--line);overflow:hidden;position:relative;
+}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.thumb .ghost{
+  font-family:'Anton',sans-serif;font-size:clamp(20px,2.4vw,30px);
+  text-transform:uppercase;color:var(--line);text-align:center;padding:0 10px;
+  letter-spacing:-.01em;
+}
+.body{padding:11px 12px 12px;display:flex;flex-direction:column;gap:8px;flex:1}
+.name{
+  font-size:13.5px;font-weight:500;line-height:1.3;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+.price{
+  font-family:'Anton',sans-serif;font-size:22px;letter-spacing:.01em;
+  color:var(--stamp);margin-top:auto;
+}
+.acts{display:flex;gap:6px}
+.buy{
+  flex:1;text-align:center;background:var(--ink);color:var(--paper);
+  font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;padding:9px 6px;
+}
+.buy:hover{background:var(--stamp)}
+.pics{
+  border:1px solid var(--ink);padding:9px 8px;
+  font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;
+}
+.pics:hover{background:var(--ink);color:var(--paper)}
+
+/* ---------- STATES ---------- */
+.state{
+  font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;
+  border:1px dashed var(--ink);padding:22px;margin-top:24px;color:var(--ink-soft);
+}
+.state b{color:var(--stamp)}
+footer{
+  border-top:2px solid var(--ink);padding:16px 20px;text-align:center;
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  color:var(--ink-soft);letter-spacing:.12em;text-transform:uppercase;
+}
+#sentinel{height:60px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media(max-width:600px){
+  .grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+  .stamp{display:none}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="manifest">
+    <div class="logo">CATÁLOGO<br><span>REPS</span> / CSSBUY</div>
+    <div class="meta">
+      Curado por <b>@halosanz</b><br>
+      Envío vía agente · Weidian / Taobao<br>
+      Precios <b>EUR</b> · actualizado en vivo
+    </div>
+    <div class="stamp">Verificado · itemID real</div>
+  </div>
+  <div class="toolbar">
+    <input type="search" id="q" placeholder="BUSCAR: hoodie, jeans, sp5der…" autocomplete="off">
+    <select id="sort">
+      <option value="none">Orden: catálogo</option>
+      <option value="asc">Precio ↑</option>
+      <option value="desc">Precio ↓</option>
+    </select>
+    <span class="count" id="count">Cargando…</span>
+  </div>
+  <div class="rail" id="rail"></div>
+</header>
+
+<main>
+  <div id="out"></div>
+  <div id="sentinel"></div>
+</main>
+
+<footer>Enlaces de afiliado · CSSBuy</footer>
+
+<script>
+/* ======= CONFIG — cambia solo esto ======= */
+const SHEET_ID = '1HbVY700zq3phSeUj68GUn59XM6iLTZBCU67_8OM8MNo';
+const GID      = '795941508';
+const COL = { nombre:0, precio:1, link:2, album:3, foto:4 }; // A,B,C,D,E
+/* ========================================= */
+
+const URL_CSV = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&gid=${GID}`;
+const out=document.getElementById('out'), rail=document.getElementById('rail'),
+      qEl=document.getElementById('q'), sortEl=document.getElementById('sort'),
+      countEl=document.getElementById('count'), sentinel=document.getElementById('sentinel');
+
+let ALL=[], view=[], drawn=0, brand='TODO';
+const PAGE=60;
+
+function parseCSV(t){
+  const rows=[];let row=[],cell='',q=false;
+  for(let i=0;i<t.length;i++){const c=t[i];
+    if(q){ if(c==='"'){ if(t[i+1]==='"'){cell+='"';i++;} else q=false; } else cell+=c; }
+    else if(c==='"')q=true;
+    else if(c===','){row.push(cell);cell='';}
+    else if(c==='\n'){row.push(cell);rows.push(row);row=[];cell='';}
+    else if(c!=='\r')cell+=c;
+  }
+  row.push(cell);rows.push(row);return rows;
+}
+const isImg=s=>/^https?:\/\/\S+\.(jpe?g|png|webp|avif)(\?|$)/i.test(s||'');
+const src=u=>/yupoo\.com/i.test(u)?'/img?u='+encodeURIComponent(u):u;
+const money=s=>{const n=parseFloat(String(s).replace(/[^\d,.-]/g,'').replace(',','.'));return isNaN(n)?null:n;};
+
+function build(rows){
+  let cur='SIN MARCA';
+  const items=[];
+  for(const r of rows){
+    const nombre=(r[COL.nombre]||'').trim();
+    const link=(r[COL.link]||'').trim();
+    if(!nombre && !link) continue;
+    if(!/^https?:/i.test(link)){          // fila separadora = marca
+      if(nombre && nombre.length<40) cur=nombre.replace(/[-–—]+/g,'').replace(/\(.*?\)/g,'').trim().toUpperCase();
+      continue;
+    }
+    const cells=r.map(x=>(x||'').trim());
+    const foto=cells.find(isImg)||'';
+    const album=(cells.find(x=>/yupoo\.com/i.test(x))||'');
+    items.push({n:nombre||cur, p:money(r[COL.precio]), l:link, f:foto, a:album, b:cur});
+  }
+  return items;
+}
+
+function chips(){
+  const brands=['TODO',...[...new Set(ALL.map(i=>i.b))]];
+  rail.innerHTML='';
+  brands.forEach(b=>{
+    const c=document.createElement('button');
+    c.className='chip'+(b===brand?' on':'');c.textContent=b;
+    c.onclick=()=>{brand=b;chips();render();window.scrollTo({top:0});};
+    rail.appendChild(c);
+  });
+}
+
+function render(){
+  const q=qEl.value.trim().toLowerCase();
+  view=ALL.filter(i=>(brand==='TODO'||i.b===brand)&&(!q||(i.n+' '+i.b).toLowerCase().includes(q)));
+  const s=sortEl.value;
+  if(s==='asc')  view=[...view].sort((a,b)=>(a.p??Infinity)-(b.p??Infinity));
+  if(s==='desc') view=[...view].sort((a,b)=>(b.p??-1)-(a.p??-1));
+  out.innerHTML='';drawn=0;
+  countEl.textContent=view.length.toLocaleString('es-ES')+' piezas';
+  more();
+}
+
+function card(i){
+  const price=i.p!=null?i.p.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2})+' €':'—';
+  return `<article class="card">
+    <div class="thumb">${i.f?`<img loading="lazy" src="${src(i.f)}" alt="" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'ghost',textContent:'${i.b}'}))">`:`<div class="ghost">${i.b}</div>`}</div>
+    <div class="body">
+      <div class="name">${i.n.replace(/</g,'&lt;')}</div>
+      <div class="price">${price}</div>
+      <div class="acts">
+        <a class="buy" href="${i.l}" target="_blank" rel="nofollow noopener">Comprar</a>
+        ${i.a?`<a class="pics" href="${i.a}" target="_blank" rel="noopener">Fotos</a>`:''}
+      </div>
+    </div>
+  </article>`;
+}
+
+function more(){
+  if(drawn>=view.length) return;
+  const slice=view.slice(drawn,drawn+PAGE);
+  const groups=[];
+  slice.forEach(i=>{
+    if(!groups.length||groups.at(-1).b!==i.b) groups.push({b:i.b,items:[i]});
+    else groups.at(-1).items.push(i);
+  });
+  let html='';
+  groups.forEach(g=>{
+    const skip = drawn>0 && out.lastElementChild && out.dataset.last===g.b;
+    if(!skip) html+=`<div class="brand-head">${g.b}<small>${ALL.filter(x=>x.b===g.b).length} refs</small></div>`;
+    html+=`<div class="grid">${g.items.map(card).join('')}</div>`;
+    out.dataset.last=g.b;
+  });
+  out.insertAdjacentHTML('beforeend',html);
+  drawn+=slice.length;
+}
+
+new IntersectionObserver(e=>{if(e[0].isIntersecting) more();},{rootMargin:'600px'}).observe(sentinel);
+qEl.oninput=render; sortEl.onchange=render;
+
+fetch(URL_CSV)
+  .then(r=>{if(!r.ok)throw 0;return r.text();})
+  .then(t=>{
+    ALL=build(parseCSV(t));
+    if(!ALL.length) throw 0;
+    chips();render();
+  })
+  .catch(()=>{
+    countEl.textContent='error';
+    out.innerHTML=`<div class="state">
+      <b>NO SE PUDO LEER LA HOJA.</b><br>
+      1. Compartir → Cualquier usuario con el enlace → Lector.<br>
+      2. Comprobar SHEET_ID y GID arriba en el código.<br>
+      3. Abrir esta página desde un servidor (Vercel / GitHub Pages), no con doble clic en el archivo.
+    </div>`;
+  });
+</script>
+</body>
+</html>
