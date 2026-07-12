@@ -3,326 +3,338 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CATÁLOGO — CSSBuy</title>
+<title>HALO FINDS — Catálogo de reps · CSSBuy</title>
+<meta name="description" content="Catálogo curado de reps: Corteiz, Gallery Dept, Goyard, Ralph Lauren, Syna World y más. Links directos a CSSBuy con fotos reales del vendedor.">
+<meta property="og:title" content="HALO FINDS — Catálogo de reps">
+<meta property="og:description" content="Miles de piezas verificadas. Link directo al agente. Fotos reales.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%2314120F'/><text y='72' x='50' text-anchor='middle' font-size='64' font-family='sans-serif' font-weight='900' fill='%23C4332B'>H</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@400;700&family=Inter+Tight:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@400;700&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --paper:#F1EDE4;
-  --paper-2:#E4DED1;
-  --ink:#14120F;
-  --ink-soft:#6B655A;
-  --stamp:#C4332B;
-  --stamp-dark:#8E241E;
-  --blue:#2B4670;
-  --line:#C9C1B0;
-  --tape:#E8C55B;
+  --paper:#F1EDE4; --paper-2:#E7E1D5; --ink:#14120F; --ink-soft:#6B655A;
+  --stamp:#C4332B; --line:#CFC7B6; --ok:#2F6B4F;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
 body{
   background:var(--paper);
-  background-image:
-    repeating-linear-gradient(0deg,transparent 0 27px,rgba(20,18,15,.035) 27px 28px),
-    radial-gradient(circle at 20% 0%,rgba(196,51,43,.05),transparent 60%);
-  color:var(--ink);
-  font-family:'Inter Tight',system-ui,sans-serif;
-  -webkit-font-smoothing:antialiased;
+  background-image:repeating-linear-gradient(0deg,transparent 0 27px,rgba(20,18,15,.03) 27px 28px);
+  color:var(--ink);font-family:'Inter Tight',system-ui,sans-serif;-webkit-font-smoothing:antialiased;
 }
 a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+.wrap{max-width:1400px;margin:0 auto;padding:0 16px}
 
-/* ---------- HEADER : albarán de aduanas ---------- */
-header{
-  border-bottom:2px solid var(--ink);
-  background:var(--paper);
-  position:sticky;top:0;z-index:50;
-}
-.manifest{
-  max-width:1500px;margin:0 auto;padding:18px 20px 12px;
-  display:flex;gap:20px;align-items:flex-end;flex-wrap:wrap;
-}
-.logo{
-  font-family:'Anton',sans-serif;
-  font-size:clamp(34px,5.2vw,64px);
-  line-height:.86;letter-spacing:-.02em;text-transform:uppercase;
-}
+/* HEADER */
+header{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:2px solid var(--ink)}
+.bar{display:flex;align-items:center;gap:14px;padding:12px 0}
+.logo{font-family:'Anton',sans-serif;font-size:26px;letter-spacing:-.01em;text-transform:uppercase;line-height:1;white-space:nowrap}
 .logo span{color:var(--stamp)}
-.meta{
-  font-family:'JetBrains Mono',monospace;font-size:11px;
-  color:var(--ink-soft);text-transform:uppercase;letter-spacing:.14em;
-  line-height:1.7;padding-bottom:4px;
+.search{flex:1;display:flex;align-items:center;gap:8px;border:1px solid var(--ink);padding:8px 10px;background:var(--paper)}
+.search input{flex:1;border:0;background:transparent;outline:none;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink);min-width:0}
+.search svg{flex:0 0 14px;opacity:.5}
+.nav{display:flex;gap:4px;overflow-x:auto;padding-bottom:8px;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav a,.nav button{
+  flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+  padding:6px 10px;border:1px solid var(--line);background:var(--paper-2);white-space:nowrap
 }
-.meta b{color:var(--ink)}
-.stamp{
-  margin-left:auto;align-self:center;
-  border:2px solid var(--stamp);color:var(--stamp);
-  font-family:'JetBrains Mono',monospace;font-weight:700;font-size:11px;
-  letter-spacing:.18em;text-transform:uppercase;
-  padding:8px 12px;transform:rotate(-6deg);
-  opacity:.85;
-}
-.toolbar{
-  border-top:1px solid var(--line);
-  max-width:1500px;margin:0 auto;padding:10px 20px;
-  display:flex;gap:10px;align-items:center;flex-wrap:wrap;
-}
-input[type=search],select{
-  font-family:'JetBrains Mono',monospace;font-size:13px;
-  background:transparent;border:1px solid var(--ink);
-  padding:9px 12px;color:var(--ink);border-radius:0;
-}
-input[type=search]{flex:1;min-width:200px}
-input[type=search]:focus,select:focus{outline:2px solid var(--stamp);outline-offset:1px}
-.count{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink-soft);margin-left:auto}
+.nav a.on,.nav button.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 
-/* ---------- BRANDS RAIL ---------- */
-.rail{
-  max-width:1500px;margin:0 auto;padding:0 20px 12px;
-  display:flex;gap:6px;overflow-x:auto;scrollbar-width:thin;
-}
-.chip{
-  flex:0 0 auto;
-  font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;
-  text-transform:uppercase;padding:6px 10px;border:1px solid var(--line);
-  background:var(--paper-2);cursor:pointer;white-space:nowrap;
-}
-.chip:hover{border-color:var(--ink)}
-.chip.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+/* HERO */
+.hero{padding:38px 0 26px;border-bottom:2px solid var(--ink)}
+.hero h1{font-family:'Anton',sans-serif;font-size:clamp(40px,9vw,104px);line-height:.9;text-transform:uppercase;letter-spacing:-.02em}
+.hero h1 em{font-style:normal;color:var(--stamp)}
+.hero p{max-width:640px;margin-top:14px;font-size:16px;line-height:1.5;color:var(--ink-soft)}
+.stats{display:flex;gap:22px;flex-wrap:wrap;margin-top:20px;font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--ink-soft)}
+.stats b{display:block;font-family:'Anton',sans-serif;font-size:30px;letter-spacing:0;color:var(--ink)}
 
-/* ---------- GRID ---------- */
-main{max-width:1500px;margin:0 auto;padding:24px 20px 80px}
-.brand-head{
-  font-family:'Anton',sans-serif;text-transform:uppercase;
-  font-size:clamp(28px,4vw,52px);line-height:1;
-  padding:26px 0 12px;border-bottom:2px solid var(--ink);
-  margin:26px 0 18px;display:flex;align-items:baseline;gap:14px;
-}
-.brand-head small{
-  font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:400;
-  color:var(--ink-soft);letter-spacing:.14em;margin-left:auto;
-}
-.grid{
-  display:grid;gap:14px;
-  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
-}
-.card{
-  border:1px solid var(--line);background:var(--paper-2);
-  display:flex;flex-direction:column;
-  transition:transform .12s ease,box-shadow .12s ease,border-color .12s;
-}
-.card:hover{
-  transform:translate(-2px,-2px);
-  box-shadow:4px 4px 0 var(--ink);
-  border-color:var(--ink);
-}
-.thumb{
-  aspect-ratio:1/1;background:var(--paper);
-  display:flex;align-items:center;justify-content:center;
-  border-bottom:1px solid var(--line);overflow:hidden;position:relative;
-}
+/* SECTIONS */
+.sec{padding:34px 0}
+.sec-h{display:flex;align-items:baseline;gap:12px;border-bottom:2px solid var(--ink);padding-bottom:8px;margin-bottom:18px}
+.sec-h h2{font-family:'Anton',sans-serif;font-size:clamp(24px,4vw,40px);text-transform:uppercase;line-height:1}
+.sec-h span{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-soft);letter-spacing:.12em}
+
+/* BRAND TILES */
+.tiles{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(170px,1fr))}
+.tile{border:1px solid var(--line);background:var(--paper-2);display:flex;flex-direction:column;transition:transform .12s,box-shadow .12s,border-color .12s}
+.tile:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--ink);border-color:var(--ink)}
+.tile .ph{aspect-ratio:4/3;overflow:hidden;background:var(--paper);display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--line)}
+.tile img{width:100%;height:100%;object-fit:cover;display:block}
+.tile .tx{padding:10px 11px;display:flex;align-items:baseline;gap:8px}
+.tile .tx b{font-family:'Anton',sans-serif;font-size:17px;text-transform:uppercase;letter-spacing:.01em;font-weight:400}
+.tile .tx i{margin-left:auto;font-style:normal;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-soft)}
+
+/* GRID PRODUCTOS */
+.tools{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:16px}
+select{font-family:'JetBrains Mono',monospace;font-size:12px;border:1px solid var(--ink);background:transparent;padding:8px 10px;border-radius:0}
+.count{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-soft);letter-spacing:.1em}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
+.card{border:1px solid var(--line);background:var(--paper-2);display:flex;flex-direction:column;transition:transform .12s,box-shadow .12s,border-color .12s}
+.card:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--ink);border-color:var(--ink)}
+.thumb{aspect-ratio:1/1;background:var(--paper);border-bottom:1px solid var(--line);overflow:hidden;position:relative;display:flex;align-items:center;justify-content:center}
 .thumb img{width:100%;height:100%;object-fit:cover;display:block}
-.thumb .ghost{
-  font-family:'Anton',sans-serif;font-size:clamp(20px,2.4vw,30px);
-  text-transform:uppercase;color:var(--line);text-align:center;padding:0 10px;
-  letter-spacing:-.01em;
-}
-.body{padding:11px 12px 12px;display:flex;flex-direction:column;gap:8px;flex:1}
-.name{
-  font-size:13.5px;font-weight:500;line-height:1.3;
-  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
-}
-.price{
-  font-family:'Anton',sans-serif;font-size:22px;letter-spacing:.01em;
-  color:var(--stamp);margin-top:auto;
-}
-.acts{display:flex;gap:6px}
-.buy{
-  flex:1;text-align:center;background:var(--ink);color:var(--paper);
-  font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;
-  letter-spacing:.1em;text-transform:uppercase;padding:9px 6px;
-}
+.thumb .gh{font-family:'Anton',sans-serif;font-size:18px;text-transform:uppercase;color:var(--line);text-align:center;padding:0 8px}
+.tag{position:absolute;top:0;left:0;background:var(--ink);color:var(--paper);font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.1em;padding:3px 6px;text-transform:uppercase}
+.body{padding:10px 11px 11px;display:flex;flex-direction:column;gap:7px;flex:1}
+.name{font-size:13px;font-weight:500;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.price{font-family:'Anton',sans-serif;font-size:20px;color:var(--stamp);margin-top:auto}
+.acts{display:flex;gap:5px}
+.buy{flex:1;text-align:center;background:var(--ink);color:var(--paper);font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:9px 4px}
 .buy:hover{background:var(--stamp)}
-.pics{
-  border:1px solid var(--ink);padding:9px 8px;
-  font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;
-}
+.pics{border:1px solid var(--ink);padding:9px 7px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.06em}
 .pics:hover{background:var(--ink);color:var(--paper)}
 
-/* ---------- STATES ---------- */
-.state{
-  font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.9;
-  border:1px dashed var(--ink);padding:22px;margin-top:24px;color:var(--ink-soft);
-}
-.state b{color:var(--stamp)}
-footer{
-  border-top:2px solid var(--ink);padding:16px 20px;text-align:center;
-  font-family:'JetBrains Mono',monospace;font-size:11px;
-  color:var(--ink-soft);letter-spacing:.12em;text-transform:uppercase;
-}
-#sentinel{height:60px}
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+/* GUIA */
+.guide{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.step{border:1px solid var(--line);background:var(--paper-2);padding:16px}
+.step b{display:block;font-family:'Anton',sans-serif;font-size:34px;color:var(--stamp);line-height:1}
+.step h3{font-size:15px;margin:6px 0 6px}
+.step p{font-size:13.5px;line-height:1.5;color:var(--ink-soft)}
+.sellers{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
+.seller{border:1px dashed var(--ink);padding:12px;font-size:13.5px;line-height:1.45}
+.seller a{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--stamp);letter-spacing:.08em;text-transform:uppercase;display:inline-block;margin-top:6px;border-bottom:1px solid var(--stamp)}
+
+footer{border-top:2px solid var(--ink);padding:20px 0;margin-top:30px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);text-align:center}
+#sent{height:50px}
+.empty{border:1px dashed var(--ink);padding:24px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink-soft)}
+.top{position:fixed;right:14px;bottom:14px;z-index:70;background:var(--ink);color:var(--paper);width:42px;height:42px;display:none;align-items:center;justify-content:center;font-size:16px}
+.top.show{display:flex}
 @media(max-width:600px){
-  .grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
-  .stamp{display:none}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(46%,1fr));gap:9px}
+  .tiles{grid-template-columns:repeat(auto-fill,minmax(46%,1fr));gap:9px}
+  .logo{font-size:20px}
+  .bar{gap:8px}
 }
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
 
 <header>
-  <div class="manifest">
-    <div class="logo">CATÁLOGO<br><span>REPS</span> / CSSBUY</div>
-    <div class="meta">
-      Curado por <b>@halosanz</b><br>
-      Envío vía agente · Weidian / Taobao<br>
-      Precios <b>EUR</b> · actualizado en vivo
+  <div class="wrap">
+    <div class="bar">
+      <a href="#/" class="logo">HALO<span>FINDS</span></a>
+      <label class="search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="q" type="search" placeholder="buscar: hoodie, corteiz, jeans…" autocomplete="off">
+      </label>
     </div>
-    <div class="stamp">Verificado · itemID real</div>
+    <nav class="nav" id="nav"></nav>
   </div>
-  <div class="toolbar">
-    <input type="search" id="q" placeholder="BUSCAR: hoodie, jeans, sp5der…" autocomplete="off">
-    <select id="sort">
-      <option value="none">Orden: catálogo</option>
-      <option value="asc">Precio ↑</option>
-      <option value="desc">Precio ↓</option>
-    </select>
-    <span class="count" id="count">Cargando…</span>
-  </div>
-  <div class="rail" id="rail"></div>
 </header>
 
-<main>
-  <div id="out"></div>
-  <div id="sentinel"></div>
-</main>
+<main class="wrap" id="app"></main>
 
-<footer>Enlaces de afiliado · CSSBuy</footer>
+<footer>Enlaces de afiliado · CSSBuy · <a href="#/guia">Cómo comprar</a></footer>
+<button class="top" id="top" aria-label="Arriba">↑</button>
 
 <script>
-/* ======= CONFIG — cambia solo esto ======= */
-const SHEET_ID = '1HbVY700zq3phSeUj68GUn59XM6iLTZBCU67_8OM8MNo';
-const GID      = '795941508';
-const COL = { nombre:0, precio:1, link:2, album:3, foto:4 }; // A,B,C,D,E
-/* ========================================= */
+const SHEET_ID='1HbVY700zq3phSeUj68GUn59XM6iLTZBCU67_8OM8MNo', GID='795941508';
+const CSV=`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&gid=${GID}`;
+const app=document.getElementById('app'), nav=document.getElementById('nav'), qEl=document.getElementById('q');
 
-const URL_CSV = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&gid=${GID}`;
-const out=document.getElementById('out'), rail=document.getElementById('rail'),
-      qEl=document.getElementById('q'), sortEl=document.getElementById('sort'),
-      countEl=document.getElementById('count'), sentinel=document.getElementById('sentinel');
+const BRANDS=[[/corteiz|crtz/i,'Corteiz'],[/trapstar/i,'Trapstar'],[/sp5der|spider/i,'Sp5der'],[/hellstar/i,'Hellstar'],
+[/broken planet/i,'Broken Planet'],[/syna/i,'Syna World'],[/carsicko/i,'Carsicko'],[/minus two/i,'Minus Two'],
+[/mertra|mert /i,'Mertra'],[/denim tears/i,'Denim Tears'],[/acne/i,'Acne Studios'],[/gallery/i,'Gallery Dept'],
+[/ralph|polo rl/i,'Ralph Lauren'],[/north face|tnf/i,'The North Face'],[/supreme/i,'Supreme'],[/nike/i,'Nike'],
+[/goyard/i,'Goyard'],[/derschutze/i,'Derschutze'],[/peolhouse/i,'Peolhouse'],[/eeysian/i,'Eeysian'],
+[/mutimao|muti /i,'Mutimao'],[/\buvu\b/i,'UVU'],[/6pm/i,'6PM'],[/stussy/i,'Stussy'],[/essentials|fear of god/i,'Fear of God'],
+[/protect/i,'Protect'],[/lacoste/i,'Lacoste'],[/moncler/i,'Moncler'],[/stone island/i,'Stone Island'],[/amiri/i,'Amiri'],
+[/bape/i,'Bape'],[/palm angels/i,'Palm Angels'],[/rhude/i,'Rhude'],[/represent/i,'Represent'],[/chrome hearts/i,'Chrome Hearts'],
+[/balenciaga/i,'Balenciaga'],[/louis vuitton|\blv\b/i,'Louis Vuitton'],[/cargos graff|graff/i,'Cargos Graff'],
+[/off.?white/i,'Off-White'],[/adidas/i,'Adidas'],[/jordan/i,'Jordan'],[/reav/i,'Reav']];
 
-let ALL=[], view=[], drawn=0, brand='TODO';
-const PAGE=60;
+const CATS=[[/hoodie|sudadera con capucha|capucha/i,'Hoodies'],[/tee\b|t-?shirt|camiseta|manga corta/i,'Camisetas'],
+[/jean|vaquero|denim pant/i,'Jeans'],[/short|bermuda/i,'Shorts'],[/pant|pantal|sweatpant|jogger|cargo|trouser/i,'Pantalones'],
+[/jacket|chaqueta|coat|puffer|abrigo|windbreaker|bomber/i,'Chaquetas'],[/polo/i,'Polos'],
+[/sweater|knit|crewneck|jersey|sudadera/i,'Sudaderas'],[/camisa|shirt long|longsleeve|manga larga|long sleeve/i,'Camisas'],
+[/bolso|bag|wallet|cartera|backpack|mochila/i,'Bolsos'],[/gorra|cap\b|hat|beanie|bucket/i,'Gorras'],
+[/zapatilla|sneaker|shoe|trainer/i,'Zapatillas'],[/set\b|conjunto|tracksuit|chandal/i,'Conjuntos']];
 
-function parseCSV(t){
-  const rows=[];let row=[],cell='',q=false;
-  for(let i=0;i<t.length;i++){const c=t[i];
-    if(q){ if(c==='"'){ if(t[i+1]==='"'){cell+='"';i++;} else q=false; } else cell+=c; }
-    else if(c==='"')q=true;
-    else if(c===','){row.push(cell);cell='';}
-    else if(c==='\n'){row.push(cell);rows.push(row);row=[];cell='';}
-    else if(c!=='\r')cell+=c;
-  }
-  row.push(cell);rows.push(row);return rows;
-}
-const isImg=s=>/^https?:\/\/\S+\.(jpe?g|png|webp|avif)(\?|$)/i.test(s||'');
-const src=u=>/yupoo\.com/i.test(u)?'/img?u='+encodeURIComponent(u):u;
+const slug=s=>s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
 const money=s=>{const n=parseFloat(String(s).replace(/[^\d,.-]/g,'').replace(',','.'));return isNaN(n)?null:n;};
+const fmt=n=>n==null?'—':n.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2})+' €';
+const esc=s=>String(s).replace(/[<>&"]/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c]));
+const cover=u=>'/cover?u='+encodeURIComponent(u);
+
+function parseCSV(t){const R=[];let r=[],c='',q=false;
+  for(let i=0;i<t.length;i++){const ch=t[i];
+    if(q){ if(ch==='"'){ if(t[i+1]==='"'){c+='"';i++;} else q=false; } else c+=ch; }
+    else if(ch==='"')q=true; else if(ch===','){r.push(c);c='';}
+    else if(ch==='\n'){r.push(c);R.push(r);r=[];c='';} else if(ch!=='\r')c+=ch;}
+  r.push(c);R.push(r);return R;}
+
+let ALL=[], SELLERS=[], BR=[], CT=[];
+
+function classify(name,section){
+  const b=BRANDS.find(([re])=>re.test(name)) || BRANDS.find(([re])=>re.test(section));
+  const c=CATS.find(([re])=>re.test(name));
+  return {brand:b?b[1]:'Otros', cat:c?c[1]:'Otros'};
+}
 
 function build(rows){
-  let cur='SIN MARCA';
-  const items=[];
-  for(const r of rows){
-    const nombre=(r[COL.nombre]||'').trim();
-    const link=(r[COL.link]||'').trim();
-    if(!nombre && !link) continue;
-    if(!/^https?:/i.test(link)){          // fila separadora = marca
-      if(nombre && nombre.length<40) cur=nombre.replace(/[-–—]+/g,'').replace(/\(.*?\)/g,'').trim().toUpperCase();
-      continue;
+  let sec='', items=[], sellers=[], inSellers=false;
+  rows.forEach((r,idx)=>{
+    const n=(r[0]||'').trim(), pr=(r[1]||'').trim(), l=(r[2]||'').trim(), al=(r[3]||'').trim();
+    if(!n && !l) return;
+    if(idx===0 && /nombre/i.test(n)) return;
+    if(!/^https?:/i.test(l)){
+      if(/vendedores recomendados/i.test(n)){inSellers=true;return;}
+      if(inSellers){ sellers.push({t:n, url:al}); return; }
+      sec=n.replace(/\(.*?\)/g,'').replace(/[—–-]+/g,' ').trim();
+      return;
     }
-    const cells=r.map(x=>(x||'').trim());
-    const foto=cells.find(isImg)||'';
-    const album=(cells.find(x=>/yupoo\.com/i.test(x))||'');
-    items.push({n:nombre||cur, p:money(r[COL.precio]), l:link, f:foto, a:album, b:cur});
-  }
-  return items;
-}
-
-function chips(){
-  const brands=['TODO',...[...new Set(ALL.map(i=>i.b))]];
-  rail.innerHTML='';
-  brands.forEach(b=>{
-    const c=document.createElement('button');
-    c.className='chip'+(b===brand?' on':'');c.textContent=b;
-    c.onclick=()=>{brand=b;chips();render();window.scrollTo({top:0});};
-    rail.appendChild(c);
+    const {brand,cat}=classify(n,sec);
+    items.push({n, p:money(pr), l, a:al, b:brand, c:cat, s:(sec.match(/\(([^)]+)\)/)||[])[1]||''});
   });
+  return {items, sellers};
 }
 
-function render(){
-  const q=qEl.value.trim().toLowerCase();
-  view=ALL.filter(i=>(brand==='TODO'||i.b===brand)&&(!q||(i.n+' '+i.b).toLowerCase().includes(q)));
-  const s=sortEl.value;
-  if(s==='asc')  view=[...view].sort((a,b)=>(a.p??Infinity)-(b.p??Infinity));
-  if(s==='desc') view=[...view].sort((a,b)=>(b.p??-1)-(a.p??-1));
-  out.innerHTML='';drawn=0;
-  countEl.textContent=view.length.toLocaleString('es-ES')+' piezas';
-  more();
-}
-
-function card(i){
-  const price=i.p!=null?i.p.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2})+' €':'—';
+/* ---------- RENDER ---------- */
+function cardHTML(i){
   return `<article class="card">
-    <div class="thumb">${i.f?`<img loading="lazy" src="${src(i.f)}" alt="" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'ghost',textContent:'${i.b}'}))">`:`<div class="ghost">${i.b}</div>`}</div>
+    <div class="thumb">${i.a?`<img loading="lazy" data-src="${cover(i.a)}" alt="" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'gh',textContent:'${esc(i.b)}'}))">`:`<div class="gh">${esc(i.b)}</div>`}
+      <span class="tag">${esc(i.b)}</span></div>
     <div class="body">
-      <div class="name">${i.n.replace(/</g,'&lt;')}</div>
-      <div class="price">${price}</div>
+      <div class="name">${esc(i.n)}</div>
+      <div class="price">${fmt(i.p)}</div>
       <div class="acts">
         <a class="buy" href="${i.l}" target="_blank" rel="nofollow noopener">Comprar</a>
         ${i.a?`<a class="pics" href="${i.a}" target="_blank" rel="noopener">Fotos</a>`:''}
       </div>
+    </div></article>`;
+}
+
+let LIST=[], drawn=0; const PAGE=48;
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const im=e.target;im.src=im.dataset.src;io.unobserve(im);}}),{rootMargin:'400px'});
+function lazy(){document.querySelectorAll('img[data-src]:not([src])').forEach(im=>io.observe(im));}
+
+function drawMore(){
+  const gridEl=document.getElementById('grid'); if(!gridEl) return;
+  const slice=LIST.slice(drawn,drawn+PAGE);
+  gridEl.insertAdjacentHTML('beforeend',slice.map(cardHTML).join(''));
+  drawn+=slice.length; lazy();
+}
+const sentIO=new IntersectionObserver(e=>{if(e[0].isIntersecting) drawMore();},{rootMargin:'700px'});
+
+function listView(title,items,sub){
+  LIST=items; drawn=0;
+  app.innerHTML=`
+    <section class="sec">
+      <div class="sec-h"><h2>${esc(title)}</h2><span>${items.length.toLocaleString('es-ES')} piezas</span></div>
+      <div class="tools">
+        ${sub||''}
+        <select id="sort">
+          <option value="none">Orden: catálogo</option>
+          <option value="asc">Precio ↑</option>
+          <option value="desc">Precio ↓</option>
+        </select>
+      </div>
+      <div class="grid" id="grid"></div>
+      ${items.length?'<div id="sent"></div>':'<div class="empty">Nada por aquí. Prueba otra búsqueda.</div>'}
+    </section>`;
+  document.getElementById('sort').onchange=e=>{
+    const v=e.target.value;
+    LIST=v==='none'?items:[...items].sort((a,b)=>v==='asc'?(a.p??1e9)-(b.p??1e9):(b.p??-1)-(a.p??-1));
+    drawn=0; document.getElementById('grid').innerHTML=''; drawMore();
+  };
+  drawMore();
+  const s=document.getElementById('sent'); if(s) sentIO.observe(s);
+}
+
+function home(){
+  const tiles=BR.map(([b,arr])=>`<a class="tile" href="#/m/${slug(b)}">
+      <div class="ph"><img loading="lazy" data-src="${cover(arr[0].a)}" alt="" onerror="this.remove()"></div>
+      <div class="tx"><b>${esc(b)}</b><i>${arr.length}</i></div></a>`).join('');
+  const cats=CT.map(([c,arr])=>`<a class="tile" href="#/c/${slug(c)}">
+      <div class="ph"><img loading="lazy" data-src="${cover(arr[0].a)}" alt="" onerror="this.remove()"></div>
+      <div class="tx"><b>${esc(c)}</b><i>${arr.length}</i></div></a>`).join('');
+  app.innerHTML=`
+  <section class="hero">
+    <h1>REPS<br><em>CURADOS</em>.<br>SIN RUIDO.</h1>
+    <p>Cada pieza abierta, verificada y enlazada a su producto real. Nada de itemIDs inventados: si está aquí, existe y se compra en dos clics.</p>
+    <div class="stats">
+      <div><b>${ALL.length.toLocaleString('es-ES')}</b>piezas</div>
+      <div><b>${BR.length}</b>marcas</div>
+      <div><b>${new Set(ALL.map(i=>i.s).filter(Boolean)).size}</b>vendedores</div>
+      <div><b>${fmt(Math.min(...ALL.map(i=>i.p??1e9)))}</b>desde</div>
     </div>
-  </article>`;
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><h2>Marcas</h2><span>toca para entrar</span></div>
+    <div class="tiles">${tiles}</div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><h2>Categorías</h2><span>por tipo de prenda</span></div>
+    <div class="tiles">${cats}</div>
+  </section>
+
+  ${guideHTML()}
+
+  ${SELLERS.length?`<section class="sec">
+    <div class="sec-h"><h2>Vendedores recomendados</h2><span>compra directa en su Yupoo</span></div>
+    <div class="sellers">${SELLERS.map(s=>`<div class="seller">${esc(s.t)}${s.url?`<br><a href="${s.url}" target="_blank" rel="noopener">Ver Yupoo →</a>`:''}</div>`).join('')}</div>
+  </section>`:''}`;
+  lazy();
 }
 
-function more(){
-  if(drawn>=view.length) return;
-  const slice=view.slice(drawn,drawn+PAGE);
-  const groups=[];
-  slice.forEach(i=>{
-    if(!groups.length||groups.at(-1).b!==i.b) groups.push({b:i.b,items:[i]});
-    else groups.at(-1).items.push(i);
-  });
-  let html='';
-  groups.forEach(g=>{
-    const skip = drawn>0 && out.lastElementChild && out.dataset.last===g.b;
-    if(!skip) html+=`<div class="brand-head">${g.b}<small>${ALL.filter(x=>x.b===g.b).length} refs</small></div>`;
-    html+=`<div class="grid">${g.items.map(card).join('')}</div>`;
-    out.dataset.last=g.b;
-  });
-  out.insertAdjacentHTML('beforeend',html);
-  drawn+=slice.length;
+function guideHTML(){
+  return `<section class="sec" id="guia">
+    <div class="sec-h"><h2>Cómo comprar</h2><span>4 pasos · 10 min</span></div>
+    <div class="guide">
+      <div class="step"><b>01</b><h3>Elige la pieza</h3><p>Pulsa <strong>Fotos</strong> para ver el álbum real del vendedor: colores, detalles y tallas.</p></div>
+      <div class="step"><b>02</b><h3>Abre en CSSBuy</h3><p><strong>Comprar</strong> te lleva al producto ya cargado en el agente. Elige talla y color y añádelo al carrito.</p></div>
+      <div class="step"><b>03</b><h3>El agente lo compra</h3><p>Pagas el artículo. CSSBuy lo recibe en su almacén de China y te enseña fotos QC reales.</p></div>
+      <div class="step"><b>04</b><h3>Envío a España</h3><p>Agrupa varios artículos en un envío para ahorrar. Eliges línea de envío y pagas el porte.</p></div>
+    </div>
+  </section>`;
 }
 
-new IntersectionObserver(e=>{if(e[0].isIntersecting) more();},{rootMargin:'600px'}).observe(sentinel);
-qEl.oninput=render; sortEl.onchange=render;
+/* ---------- ROUTER ---------- */
+function route(){
+  const h=location.hash.replace(/^#\/?/,''), [k,v]=h.split('/');
+  document.querySelectorAll('#nav a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#/'+h));
+  window.scrollTo({top:0});
+  if(!k){ home(); return; }
+  if(k==='todo'){ listView('Todo el catálogo',ALL); return; }
+  if(k==='guia'){ app.innerHTML=guideHTML(); return; }
+  if(k==='m'){ const b=(BR.find(([n])=>slug(n)===v)||[])[0]; if(b) return listView(b,ALL.filter(i=>i.b===b)); }
+  if(k==='c'){ const c=(CT.find(([n])=>slug(n)===v)||[])[0]; if(c) return listView(c,ALL.filter(i=>i.c===c)); }
+  home();
+}
 
-fetch(URL_CSV)
-  .then(r=>{if(!r.ok)throw 0;return r.text();})
-  .then(t=>{
-    ALL=build(parseCSV(t));
-    if(!ALL.length) throw 0;
-    chips();render();
-  })
-  .catch(()=>{
-    countEl.textContent='error';
-    out.innerHTML=`<div class="state">
-      <b>NO SE PUDO LEER LA HOJA.</b><br>
-      1. Compartir → Cualquier usuario con el enlace → Lector.<br>
-      2. Comprobar SHEET_ID y GID arriba en el código.<br>
-      3. Abrir esta página desde un servidor (Vercel / GitHub Pages), no con doble clic en el archivo.
-    </div>`;
-  });
+function search(){
+  const q=qEl.value.trim().toLowerCase();
+  if(!q){ route(); return; }
+  const r=ALL.filter(i=>(i.n+' '+i.b+' '+i.c).toLowerCase().includes(q));
+  listView('Buscar: '+q, r);
+}
+let t; qEl.oninput=()=>{clearTimeout(t); t=setTimeout(search,220);};
+
+const topBtn=document.getElementById('top');
+topBtn.onclick=()=>window.scrollTo({top:0,behavior:'smooth'});
+addEventListener('scroll',()=>topBtn.classList.toggle('show',scrollY>800));
+addEventListener('hashchange',()=>{qEl.value='';route();});
+
+/* ---------- BOOT ---------- */
+fetch(CSV).then(r=>r.text()).then(txt=>{
+  const {items,sellers}=build(parseCSV(txt));
+  ALL=items; SELLERS=sellers;
+  const g=(key)=>{const m=new Map(); ALL.forEach(i=>{const k=i[key]; if(!m.has(k))m.set(k,[]); m.get(k).push(i);});
+    return [...m.entries()].filter(([k])=>k!=='Otros').sort((a,b)=>b[1].length-a[1].length);};
+  BR=g('b'); CT=g('c');
+  nav.innerHTML=`<a href="#/">Inicio</a><a href="#/todo">Todo (${ALL.length})</a>`
+    + BR.slice(0,14).map(([b,a])=>`<a href="#/m/${slug(b)}">${esc(b)} ${a.length}</a>`).join('')
+    + `<a href="#/guia">Cómo comprar</a>`;
+  route();
+}).catch(()=>{
+  app.innerHTML='<div class="empty">No se pudo leer la hoja. Compártela como «cualquiera con el enlace · lector».</div>';
+});
 </script>
 </body>
 </html>
