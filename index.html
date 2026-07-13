@@ -140,6 +140,7 @@ const esc=s=>String(s).replace(/[<>&"']/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;'
 const okCss=u=>/^https:\/\/(www\.)?cssbuy\.com\/item-micro-\d+\.html/i.test(u);
 const okYu=u=>/^https:\/\/[a-z0-9.-]+\.yupoo\.com\//i.test(u);
 const cover=u=>'/cover?u='+encodeURIComponent(u);
+const pic=i=>i.a?cover(i.a):('/wimg?id='+((i.l.match(/item-micro-(\d+)/)||[])[1]||''));
 
 function clean(n){
   return n.replace(/[\u4e00-\u9fff]+/g,' ')           // chino
@@ -201,7 +202,7 @@ function build(rows){
 }
 
 function cardHTML(i){
-  const img=i.a?`<img loading="lazy" data-src="${esc(cover(i.a))}" alt="" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'gh',textContent:'${esc(i.b)}'}))">`:`<div class="gh">${esc(i.b)}</div>`;
+  const img=`<img loading="lazy" data-src="${esc(pic(i))}" alt="" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'gh',textContent:'${esc(i.b)}'}))">`:`<div class="gh">${esc(i.b)}</div>`;
   return `<article class="card"><div class="thumb">${img}<span class="tag">${esc(i.b)}</span></div>
     <div class="body"><div class="name">${esc(i.n)}</div><div class="price">${fmt(i.p)}</div>
     <div class="acts"><a class="buy" href="${esc(i.l)}" target="_blank" rel="nofollow noopener">Comprar</a>
@@ -247,6 +248,7 @@ function listView(title,items){
   const s=document.getElementById('sent');if(s)sentIO.observe(s);
 }
 
+const rep=arr=>{const c=arr.find(x=>x.a); return c?c.a:'';};
 const tile=(href,label,n,img)=>`<a class="tile" href="${href}">
   <div class="ph">${img?`<img loading="lazy" data-src="${esc(cover(img))}" alt="" onerror="this.remove()">`:''}</div>
   <div class="tx"><b>${esc(label)}</b><i>${n}</i></div></a>`;
@@ -263,13 +265,13 @@ function home(){
       <div><b>Weidian</b>links vivos</div>
     </div>
   </section>
-  <div class="cta"><div><b>Primera compra en CSSBuy</b><p>Crea la cuenta desde aquí y entras con cupón de bienvenida. Es el agente que uso para todo el catálogo.</p></div><a href="https://www.cssbuy.com/?promotionCode=e5f50e35618a790a" target="_blank" rel="nofollow noopener">Crear cuenta</a></div>
+  <div class="cta"><div><b>Primera compra en CSSBuy</b><p>Crea la cuenta desde aquí y entras con cupón de bienvenida. Es el agente que uso para todo el catálogo.</p></div><a href="https://cssb.uy/19Rl" target="_blank" rel="nofollow noopener">Crear cuenta</a></div>
   <section class="sec"><div class="sec-h"><h2>Explora</h2><span>por tipo</span></div>
-    <div class="tiles">${FAM.map(([f,a])=>tile('#/f/'+slug(f),f,a.length,a[0].a)).join('')}</div></section>
+    <div class="tiles">${FAM.map(([f,a])=>tile('#/f/'+slug(f),f,a.length,rep(a))).join('')}</div></section>
   <section class="sec"><div class="sec-h"><h2>Marcas</h2><span>toca para entrar</span></div>
-    <div class="tiles">${BR.map(([b,a])=>tile('#/m/'+slug(b),b,a.length,a[0].a)).join('')}</div></section>
+    <div class="tiles">${BR.map(([b,a])=>tile('#/m/'+slug(b),b,a.length,rep(a))).join('')}</div></section>
   <section class="sec"><div class="sec-h"><h2>Categorías</h2><span>por prenda</span></div>
-    <div class="tiles">${CT.map(([c,a])=>tile('#/c/'+slug(c),c,a.length,a[0].a)).join('')}</div></section>
+    <div class="tiles">${CT.map(([c,a])=>tile('#/c/'+slug(c),c,a.length,rep(a))).join('')}</div></section>
   ${guide()}
   ${SELLERS.length?`<section class="sec"><div class="sec-h"><h2>Vendedores recomendados</h2><span>compra directa en su Yupoo</span></div>
     <div class="sellers">${SELLERS.map(s=>`<div class="seller">${esc(s.t)}${s.url?`<br><a href="${esc(s.url)}" target="_blank" rel="noopener">Ver Yupoo →</a>`:''}</div>`).join('')}</div></section>`:''}`;
