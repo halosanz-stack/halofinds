@@ -202,7 +202,7 @@ function build(rows){
 }
 
 function cardHTML(i){
-  const img=`<img loading="lazy" data-src="${esc(pic(i))}" alt="" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'gh',textContent:'${esc(i.b)}'}))">`:`<div class="gh">${esc(i.b)}</div>`;
+  const img=`<img loading="lazy" data-src="${esc(pic(i))}" alt="" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'gh',textContent:'${esc(i.b)}'}))">`;
   return `<article class="card"><div class="thumb">${img}<span class="tag">${esc(i.b)}</span></div>
     <div class="body"><div class="name">${esc(i.n)}</div><div class="price">${fmt(i.p)}</div>
     <div class="acts"><a class="buy" href="${esc(i.l)}" target="_blank" rel="nofollow noopener">Comprar</a>
