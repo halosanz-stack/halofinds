@@ -128,7 +128,7 @@ footer{border-top:2px solid var(--ink);padding:20px 0;margin-top:30px;font-famil
 
 <main class="wrap" id="app"></main>
 
-<footer>Enlaces de afiliado · CSSBuy · <a href="#/guia">Cómo comprar</a></footer>
+<footer><a href="#/guia">Cómo comprar</a> · Catálogo actualizado a diario</footer>
 <button class="top" id="top" aria-label="Arriba">↑</button>
 
 <script>
@@ -187,8 +187,10 @@ function build(rows){
       sec=n.replace(/\(.*?\)/g,'').replace(/[—–-]+/g,' ').trim();
       return;
     }
-    const {brand,cat}=classify(n,sec);
-    items.push({n, p:money(pr), l, a:al, b:brand, c:cat, s:(sec.match(/\(([^)]+)\)/)||[])[1]||''});
+    if(/item-long-/i.test(l)) return;
+    let nombre=n; let {brand,cat}=classify(n,sec);
+    if(/mrcanvas/i.test(al)){ brand='Bolsos & carteras'; cat='Bolsos'; nombre=n.replace(/^goyard\s*/i,'Bolso '); }
+    items.push({n:nombre, p:money(pr), l, a:al, b:brand, c:cat, s:(sec.match(/\(([^)]+)\)/)||[])[1]||''});
   });
   return {items, sellers};
 }
@@ -254,8 +256,8 @@ function home(){
       <div class="tx"><b>${esc(c)}</b><i>${arr.length}</i></div></a>`).join('');
   app.innerHTML=`
   <section class="hero">
-    <h1>REPS<br><em>CURADOS</em>.<br>SIN RUIDO.</h1>
-    <p>Cada pieza abierta, verificada y enlazada a su producto real. Nada de itemIDs inventados: si está aquí, existe y se compra en dos clics.</p>
+    <h1>LA HOJA<br><em>DE CONFIANZA</em>.</h1>
+    <p>Miles de piezas ordenadas por marca y por tipo. Cada una con las fotos reales del vendedor y su link directo, lista para comprar.</p>
     <div class="stats">
       <div><b>${ALL.length.toLocaleString('es-ES')}</b>piezas</div>
       <div><b>${BR.length}</b>marcas</div>
