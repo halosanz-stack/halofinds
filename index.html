@@ -210,7 +210,12 @@ function cardHTML(i){
 }
 
 let LIST=[],drawn=0,BASE=[],CATSEL='TODO';const PAGE=48;
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.src=e.target.dataset.src;io.unobserve(e.target);}}),{rootMargin:'400px'});
+const cola=[]; let vuelo=0;
+function siguiente(){ while(vuelo<4 && cola.length){ const im=cola.shift(); if(!im.isConnected) continue; vuelo++;
+  const fin=()=>{ vuelo--; siguiente(); };
+  im.addEventListener('load',fin,{once:true}); im.addEventListener('error',fin,{once:true});
+  im.src=im.dataset.src; } }
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){ io.unobserve(e.target); cola.push(e.target); siguiente(); }}),{rootMargin:'300px'});
 const lazy=()=>document.querySelectorAll('img[data-src]:not([src])').forEach(i=>io.observe(i));
 const sentIO=new IntersectionObserver(e=>{if(e[0].isIntersecting)drawMore();},{rootMargin:'700px'});
 
