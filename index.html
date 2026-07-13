@@ -117,19 +117,19 @@ const BRANDS=[[/corteiz|crtz|alcatraz/i,'Corteiz'],[/trapstar/i,'Trapstar'],[/sp
 
 /* categoría -> familia */
 const CATS=[
- [/zapatilla|sneaker|\bshoes?\b|trainer|\bdunk\b|air ?force|air ?max|new balance|\basics\b|kayano|dr martens|bapesta|\bshox\b|ramones|jumbo lace|\bgats?\b|\bmmy\b|mihara|skel top|2002r|9060|1906|\b992\b|jordan|yeezy|birkenstock|\bcurb\b|salomon|xt-6|golden goose|mcqueen|hot step|\bcampus\b|stan smith|nocta/i,'Zapatillas','Calzado'],
  [/bolso|handbag|\bbag\b|wallet|cartera|backpack|mochila|pouch|clutch/i,'Bolsos','Bolsos y accesorios'],
  [/gorra|\bcap\b|\bhat\b|beanie|bucket|keychain|llavero|belt|cintur|scarf|bufanda|sock|calcetin|glasses|gafas|jewel|collar|necklace|ring\b/i,'Accesorios','Bolsos y accesorios'],
- [/tracksuit|chandal|conjunto|\bset\b|coat.*pants|zip-up coat/i,'Conjuntos','Ropa'],
  [/hoodie|capucha/i,'Hoodies','Ropa'],
- [/sweatshirt|sweater|knit|crewneck|jersey|sudadera|cardigan/i,'Sudaderas','Ropa'],
+ [/tracksuit|chandal|conjunto|\bset\b|zip-up coat/i,'Conjuntos','Ropa'],
+ [/sweatshirt|sweater|knit|crewneck|cerwneck|jersey|sudadera|cardigan/i,'Sudaderas','Ropa'],
  [/jacket|chaqueta|coat|puffer|abrigo|windbreaker|bomber|vest|chaleco/i,'Chaquetas','Ropa'],
  [/jean|vaquero|denim (pant|trouser)/i,'Jeans','Ropa'],
  [/short|bermuda/i,'Shorts','Ropa'],
  [/pant|pantal|sweatpant|jogger|cargo|trouser/i,'Pantalones','Ropa'],
  [/polo/i,'Polos','Ropa'],
- [/longsleeve|long sleeve|manga larga|\bshirt\b|camisa/i,'Camisas','Ropa'],
- [/tee\b|t-?shirt|camiseta|manga corta|short sleeve/i,'Camisetas','Ropa']
+ [/longsleeve|long sleeve|manga larga|camisa|\bshirt\b/i,'Camisas','Ropa'],
+ [/tee\b|t-?shirt|camiseta|manga corta|short sleeve/i,'Camisetas','Ropa'],
+ [/zapatilla|sneaker|\bshoes?\b|trainer|\bdunk\b|air ?force|air ?max|new balance|\basics\b|kayano|dr martens|bapesta|\bshox\b|ramones|jumbo lace|\bgats?\b|\bmmy\b|mihara|skel top|2002r|9060|1906|\b992\b|air jordan|jordan [0-9]|yeezy (350|slide|foam|boost)|birkenstock|\bcurb\b|salomon|xt-6|golden goose|mcqueen|hot step|\bcampus\b|stan smith|nocta/i,'Zapatillas','Calzado']
 ];
 
 const slug=s=>s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
