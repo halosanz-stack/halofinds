@@ -292,9 +292,9 @@ function route(){
 let t;qEl.oninput=()=>{clearTimeout(t);t=setTimeout(()=>{const q=qEl.value.trim().toLowerCase();
   if(!q)return route();
   listView('Buscar: '+q,ALL.filter(i=>(i.n+' '+i.b+' '+i.c).toLowerCase().includes(q)));},220);};
-const top=document.getElementById('top');
-top.onclick=()=>scrollTo({top:0,behavior:'smooth'});
-addEventListener('scroll',()=>top.classList.toggle('show',scrollY>800));
+const topBtn=document.getElementById('top');
+topBtn.onclick=()=>scrollTo({top:0,behavior:'smooth'});
+addEventListener('scroll',()=>topBtn.classList.toggle('show',scrollY>800));
 addEventListener('hashchange',()=>{qEl.value='';route();});
 
 fetch(CSV).then(r=>r.text()).then(txt=>{
