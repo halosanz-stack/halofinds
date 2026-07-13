@@ -74,6 +74,7 @@ select{font-family:'JetBrains Mono',monospace;font-size:12px;border:1px solid va
 .sellers{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
 .seller{border:1px dashed var(--ink);padding:12px;font-size:13.5px;line-height:1.45}
 .seller a{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--stamp);letter-spacing:.08em;text-transform:uppercase;display:inline-block;margin-top:6px;border-bottom:1px solid var(--stamp)}
+.cta{display:flex;gap:14px;align-items:center;flex-wrap:wrap;border:2px solid var(--ink);background:var(--ink);color:var(--paper);padding:16px 18px;margin:18px 0}.cta b{font-family:'Anton',sans-serif;font-size:22px;text-transform:uppercase;font-weight:400;line-height:1.1}.cta p{font-size:13.5px;color:#CFC7B6;margin-top:2px;line-height:1.4}.cta a{margin-left:auto;background:var(--stamp);color:#fff;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:12px 18px;white-space:nowrap}.cta a:hover{background:var(--paper);color:var(--ink)}@media(max-width:600px){.cta a{margin-left:0;width:100%;text-align:center}}
 footer{border-top:2px solid var(--ink);padding:18px 0;margin-top:26px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);text-align:center}
 #sent{height:50px}
 .empty{border:1px dashed var(--ink);padding:22px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--soft)}
@@ -262,6 +263,7 @@ function home(){
       <div><b>Weidian</b>links vivos</div>
     </div>
   </section>
+  <div class="cta"><div><b>Primera compra en CSSBuy</b><p>Crea la cuenta desde aquí y entras con cupón de bienvenida. Es el agente que uso para todo el catálogo.</p></div><a href="https://www.cssbuy.com/?promotionCode=e5f50e35618a790a" target="_blank" rel="nofollow noopener">Crear cuenta</a></div>
   <section class="sec"><div class="sec-h"><h2>Explora</h2><span>por tipo</span></div>
     <div class="tiles">${FAM.map(([f,a])=>tile('#/f/'+slug(f),f,a.length,a[0].a)).join('')}</div></section>
   <section class="sec"><div class="sec-h"><h2>Marcas</h2><span>toca para entrar</span></div>
