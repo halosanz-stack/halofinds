@@ -297,7 +297,7 @@ topBtn.onclick=()=>scrollTo({top:0,behavior:'smooth'});
 addEventListener('scroll',()=>topBtn.classList.toggle('show',scrollY>800));
 addEventListener('hashchange',()=>{qEl.value='';route();});
 
-fetch(CSV).then(r=>r.text()).then(txt=>{
+fetch(CSV+'&_='+Date.now(),{cache:'no-store'}).then(r=>r.text()).then(txt=>{
   const {items,sellers}=build(parseCSV(txt));
   ALL=items;SELLERS=sellers;
   const g=k=>{const m=new Map();ALL.forEach(i=>{const v=i[k];if(!m.has(v))m.set(v,[]);m.get(v).push(i);});
