@@ -54,6 +54,7 @@ select{font-family:'JetBrains Mono',monospace;font-size:12px;border:1px solid va
 .grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
 .card{border:1px solid var(--line);background:var(--paper2);display:flex;flex-direction:column;transition:transform .12s,box-shadow .12s,border-color .12s}
 .card:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--ink);border-color:var(--ink)}
+a.thumb{display:block;cursor:zoom-in}
 .thumb{aspect-ratio:1/1;background:var(--paper);border-bottom:1px solid var(--line);overflow:hidden;position:relative;display:flex;align-items:center;justify-content:center}
 .thumb img{width:100%;height:100%;object-fit:cover}
 .thumb .gh{font-family:'Anton',sans-serif;font-size:17px;text-transform:uppercase;color:var(--line);text-align:center;padding:0 8px}
@@ -205,7 +206,7 @@ function build(rows){
 function cardHTML(i){
   const wid=(i.l.match(/item-micro-(\d+)/)||[])[1]||'';
   const img=`<img loading="lazy" data-src="${esc(pic(i))}" data-alt="${wid?'/wimg?id='+wid:''}" alt="" onerror="if(this.dataset.alt&&this.src.indexOf('wimg')<0){this.src=this.dataset.alt;}else{this.replaceWith(Object.assign(document.createElement('div'),{className:'gh',textContent:'${esc(i.b)}'}))}">`;
-  return `<article class="card"><div class="thumb">${img}<span class="tag">${esc(i.b)}</span></div>
+  return `<article class="card"><a class="thumb" href="${esc(i.a||i.l)}" target="_blank" rel="nofollow noopener">${img}<span class="tag">${esc(i.b)}</span></div>
     <div class="body"><div class="name">${esc(i.n)}</div><div class="price">${fmt(i.p)}</div>
     <div class="acts"><a class="buy" href="${esc(i.l)}" target="_blank" rel="nofollow noopener">Comprar</a>
     ${i.a?`<a class="pics" href="${esc(i.a)}" target="_blank" rel="noopener">Fotos</a>`:''}</div></div></article>`;
@@ -257,7 +258,6 @@ function listView(title,items){
 
 const rep=arr=>{const c=arr.find(x=>x.a)||arr[0]; return c?pic(c):'';};
 const tile=(href,label,n,img)=>`<a class="tile" href="${href}">
-    <a class="ph" href="${esc(i.a||i.l)}" target="_blank" rel="nofollow noopener">${img}</a>
   <div class="tx"><b>${esc(label)}</b><i>${n}</i></div></a>`;
 
 function home(){
