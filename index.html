@@ -255,9 +255,9 @@ function listView(title,items){
   const s=document.getElementById('sent');if(s)sentIO.observe(s);
 }
 
-const rep=arr=>{const c=arr.find(x=>x.a); return c?c.a:'';};
+const rep=arr=>{const c=arr.find(x=>x.a)||arr[0]; return c?pic(c):'';};
 const tile=(href,label,n,img)=>`<a class="tile" href="${href}">
-  <div class="ph">${img?`<img loading="lazy" data-src="${esc(cover(img))}" alt="" onerror="this.remove()">`:''}</div>
+    <a class="ph" href="${esc(i.a||i.l)}" target="_blank" rel="nofollow noopener">${img}</a>
   <div class="tx"><b>${esc(label)}</b><i>${n}</i></div></a>`;
 
 function home(){
