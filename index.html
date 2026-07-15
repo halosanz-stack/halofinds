@@ -90,7 +90,8 @@ footer{border-top:2px solid var(--ink);padding:22px 18px;text-align:center;font-
 @media(max-width:900px){
  .layout{grid-template-columns:1fr;padding:16px 14px 60px}
  aside{position:fixed;inset:0;z-index:60;background:var(--paper);max-height:100vh;padding:20px 18px 40px;display:none;overflow-y:auto}
- aside.open{display:block}
+ aside.open{display:block;padding-top:58px}
+aside.open::before{content:'✕ Cerrar';position:fixed;top:14px;right:18px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;background:var(--ink);color:var(--paper);padding:8px 12px;z-index:61}
  .btn-menu{display:block}
  .hcount{display:none}
  .cta a{margin-left:0;width:100%;text-align:center}
@@ -307,6 +308,7 @@ document.getElementById('q').addEventListener('input',e=>{
  tq=setTimeout(()=>{ if(v.length>=2) location.hash='#/q/'+encodeURIComponent(v); else if(location.hash.indexOf('#/q/')===0) location.hash='#/'; },350);
 });
 document.getElementById('mbtn').onclick=()=>document.getElementById('side').classList.toggle('open');
+document.getElementById('side').addEventListener('click',e=>{if(e.target.closest('.slink'))document.getElementById('side').classList.remove('open');});
 window.addEventListener('hashchange',ruta);
 window.addEventListener('scroll',()=>{
  const b=document.getElementById('more');
