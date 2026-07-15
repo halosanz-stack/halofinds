@@ -136,7 +136,7 @@ const CATS=[[/goyard|duffle|tote|holdall|shoulder bag/i,'Bolsos','Bolsos y acces
  [/pant|pantal|sweatpant|jogger|cargo|trouser/i,'Pantalones','Ropa'],
  [/polo/i,'Polos','Ropa'],
  [/longsleeve|long sleeve|manga larga|camisa|\bshirt\b/i,'Camisas','Ropa'],
- [/tee\b|t-?shirt|camiseta|manga corta|short sleeve/i,'Camisetas','Ropa']
+ [/longsleve|longsleeve|long sleeve|waffle|manga larga/i,'Camisas','Ropa'],[/ski mask|balaclava|pasamon/i,'Accesorios','Bolsos y accesorios'],[/\bsuit\b|tracksuit|chandal/i,'Conjuntos','Ropa'],[/tank\b|sleeveless/i,'Camisetas','Ropa'],[/tee\b|t-?shirt|camiseta|manga corta|short sleeve/i,'Camisetas','Ropa']
 ];
 const marcaDe=n=>{for(const[r,b]of BRANDS)if(r.test(n))return b;return 'Otros';};
 const catDe=n=>{for(const[r,c,f]of CATS)if(r.test(n))return[c,f];return['Otros','Ropa'];};
@@ -156,7 +156,8 @@ async function cargar(){
   const p=money(r[1]);
   const a=(r[3]||'').trim();
   const b=marcaDe(n);
-  const cf=catDe(n);
+  let cf=catDe(n);
+  if(cf[0]==='Otros'){ if(p!=null && p<26) cf=['Camisetas','Ropa']; else if(p!=null && p<45) cf=['Sudaderas','Ropa']; else cf=['Camisetas','Ropa']; }
   if(n.length<8) n=b+(cf[0]!=='Otros'?' · '+cf[0]:'');
   out.push({n:n,p:p,l:l,a:/yupoo/.test(a)?a:'',b:b,c:cf[0],f:cf[1],id:m[1],top:/★TOP/.test(n)});
  }
