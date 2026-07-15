@@ -200,8 +200,8 @@ const card=i=>{
   '</a><div class="body"><div class="name">'+esc(nombre)+'</div><div class="price">'+price+'</div>'+
   '<a class="buy" href="'+esc(i.l)+'" target="_blank" rel="nofollow noopener">Comprar</a></div></article>';
 };
-const ICONO=/travis|jordan 1|dunk|hellstar|gallery dept|sp5der|corteiz|louis vuitton|denim tears|air max|yeezy/i;
-const port=arr=>{const ico=arr.filter(x=>ICONO.test(x.n)); const conA=ico.find(x=>x.a)||arr.find(x=>x.a)||ico[0]||arr[0];return conA?pic(conA):'';};
+const PORTADA={'Ropa':/hellstar.*(hoodie|crewneck)|corteiz.*hoodie|gallery dept.*hoodie/i,'Bolsos y accesorios':/louis vuitton|goyard|dior/i,'Calzado':/travis scott|jordan 1.*(chicago|bred)|dunk.*panda/i};
+const port=(arr,fam)=>{const re=PORTADA[fam]; if(re){const p=arr.filter(x=>re.test(x.n)); const c=p.find(x=>x.a)||p[0]; if(c)return pic(c);} const conA=arr.find(x=>x.a)||arr[0];return conA?pic(conA):'';};
 const tile=(href,label,n,img,marca)=>'<a class="tile" href="'+href+'"><div class="im">'+(img?'<img loading="lazy" decoding="async" data-src="'+esc(img)+'" data-marca="'+esc(marca||label)+'" alt="">':'')+'</div><div class="tx"><b>'+esc(label)+'</b><em>'+n+'</em></div></a>';
 function sidebar(activo){
  const s=document.getElementById('side');
@@ -279,7 +279,7 @@ function home(){
   '<div class="stat"><b>'+BR.length+'</b><span>marcas</span></div>'+
   '<div class="stat"><b>'+CT.length+'</b><span>categorías</span></div></div></div>';
  h+='<div class="cta"><div><b>Primera compra en CSSBuy</b><p>Crea la cuenta desde aquí y entras con cupón de bienvenida.</p></div><a href="'+REF+'" target="_blank" rel="nofollow noopener">Crear cuenta</a></div>';
- h+='<div class="sec-h"><h2>Explora</h2><span>por tipo</span></div><div class="tiles">'+FAM.map(f=>tile('#/f/'+slug(f[0]),f[0],f[1].length,port(f[1]),f[0])).join('')+'</div>';
+ h+='<div class="sec-h"><h2>Explora</h2><span>por tipo</span></div><div class="tiles">'+FAM.map(f=>tile('#/f/'+slug(f[0]),f[0],f[1].length,port(f[1],f[0]),f[0])).join('')+'</div>';
  if(dest.length) h+='<div class="sec-h"><h2>Mejor batch</h2><span>★ top del mercado</span></div><div class="grid">'+dest.map(card).join('')+'</div>';
  h+='<div class="sec-h"><h2>Marcas</h2><span>'+BR.length+' en total</span></div><div class="tiles" id="brandtiles">'+BR.slice(0,20).map(b=>tile('#/m/'+slug(b[0]),b[0],b[1].length,port(b[1]),b[0])).join('')+'</div><button class="more" onclick="document.getElementById(\'brandtiles\').innerHTML=window.__ALLBR;lazy();this.style.display=\'none\'">Ver las '+BR.length+' marcas</button>';
 window.__ALLBR=BR.map(b=>tile('#/m/'+slug(b[0]),b[0],b[1].length,port(b[1]),b[0])).join('');
