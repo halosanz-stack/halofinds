@@ -200,7 +200,8 @@ const card=i=>{
   '</a><div class="body"><div class="name">'+esc(nombre)+'</div><div class="price">'+price+'</div>'+
   '<a class="buy" href="'+esc(i.l)+'" target="_blank" rel="nofollow noopener">Comprar</a></div></article>';
 };
-const port=arr=>{const c=arr.find(x=>x.a)||arr[0];return c?pic(c):'';};
+const ICONO=/travis|jordan 1|dunk|hellstar|gallery dept|sp5der|corteiz|louis vuitton|denim tears|air max|yeezy/i;
+const port=arr=>{const ico=arr.filter(x=>ICONO.test(x.n)); const conA=ico.find(x=>x.a)||arr.find(x=>x.a)||ico[0]||arr[0];return conA?pic(conA):'';};
 const tile=(href,label,n,img,marca)=>'<a class="tile" href="'+href+'"><div class="im">'+(img?'<img loading="lazy" decoding="async" data-src="'+esc(img)+'" data-marca="'+esc(marca||label)+'" alt="">':'')+'</div><div class="tx"><b>'+esc(label)+'</b><em>'+n+'</em></div></a>';
 function sidebar(activo){
  const s=document.getElementById('side');
