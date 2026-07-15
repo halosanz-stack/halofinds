@@ -172,7 +172,8 @@ async function cargar(){
  document.getElementById('hcount').textContent=ITEMS.length.toLocaleString('es')+' productos';
 }
 </script><script>
-const pic=i=>i.a?('/cover?u='+encodeURIComponent(i.a)):('/wimg?id='+i.id);
+const MAL=/umkao|wwtop|aaaajersey|ezjersey/i;
+const pic=i=>(i.a && !MAL.test(i.a))?('/cover?u='+encodeURIComponent(i.a)):('/wimg?id='+i.id);
 const cola=[]; let vuelo=0;
 function siguiente(){
  while(vuelo<5 && cola.length){
