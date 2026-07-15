@@ -151,15 +151,17 @@ async function cargar(){
   const m=l.match(/item-micro-(\d+)/); if(!m) continue;
   if(vistos.has(m[1])) continue; vistos.add(m[1]);
   if(/stone ?island/i.test(r[0]||'')) continue;
-  let n=sinChino((r[0]||'').trim());
+  let n=sinChino((r[0]||'').trim()).replace(/^[¥€$￥#\s]+/,'').trim();
   n=n.replace(/goyard\s*(modelo)?/i,'Bolso ').replace(/\s+/g,' ').trim();
   const p=money(r[1]);
   const a=(r[3]||'').trim();
   const b=marcaDe(n);
   let cf=catDe(n);
+  let pf=p;
+  if(cf[0]==='Bolsos' && pf!=null && pf>120) pf=null;
   if(cf[0]==='Otros'){ if(p!=null && p<26) cf=['Camisetas','Ropa']; else if(p!=null && p<45) cf=['Sudaderas','Ropa']; else cf=['Camisetas','Ropa']; }
   if(n.length<8) n=b+(cf[0]!=='Otros'?' · '+cf[0]:'');
-  out.push({n:n,p:p,l:l,a:/yupoo/.test(a)?a:'',b:b,c:cf[0],f:cf[1],id:m[1],top:/★TOP/.test(n)});
+  out.push({n:n,p:(typeof pf!=='undefined'?pf:p),l:l,a:/yupoo/.test(a)?a:'',b:b,c:cf[0],f:cf[1],id:m[1],top:/★TOP/.test(n)});
  }
  ITEMS=out;
  const g=k=>{const m={};for(const i of ITEMS){(m[i[k]]=m[i[k]]||[]).push(i);}return Object.entries(m).sort((x,y)=>y[1].length-x[1].length);};
