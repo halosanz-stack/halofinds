@@ -154,7 +154,7 @@ async function cargar(){
   const m=l.match(/item-micro-(\d+)/)||(l.match(/item-(\d+)\.html/)&&!/item-long/.test(l)?l.match(/item-(\d+)\.html/):null); if(!m) continue;
   if(vistos.has(m[1])) continue; vistos.add(m[1]);
   if(/stone ?island/i.test(r[0]||'')) continue;
-  let n=sinChino((r[0]||'').trim()).replace(/^[¥€$￥#\s]+/,'').trim();
+  let n=sinChino((r[0]||'').trim()).replace(/^[¥€$￥#\s]+/,'').replace(/\b\d{7,}\b/g,'').replace(/\(im[^)]*\)?/gi,'').replace(/\s+/g,' ').trim();
   n=n.replace(/goyard\s*(modelo)?/i,'Bolso ').replace(/\s+/g,' ').trim();
   const p=money(r[1]);
   const a=(r[3]||'').trim();
