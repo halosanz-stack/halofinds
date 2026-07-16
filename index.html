@@ -151,7 +151,7 @@ async function cargar(){
  const vistos=new Set(); const out=[];
  for(const r of rows){
   const l=(r[2]||'').trim();
-  const m=l.match(/item-micro-(\d+)/); if(!m) continue;
+  const m=l.match(/item-(?:micro-|long-)?(\d+)/); if(!m) continue;
   if(vistos.has(m[1])) continue; vistos.add(m[1]);
   if(/stone ?island/i.test(r[0]||'')) continue;
   let n=sinChino((r[0]||'').trim()).replace(/^[¥€$￥#\s]+/,'').trim();
