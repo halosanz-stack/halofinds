@@ -176,7 +176,7 @@ const MAL=/umkao|wwtop|aaaajersey|ezjersey/i;
 const pic=i=>(i.a && !MAL.test(i.a))?('/cover?u='+encodeURIComponent(i.a)):('/wimg?id='+i.id);
 const cola=[]; let vuelo=0;
 function siguiente(){
- while(vuelo<5 && cola.length){
+ while(vuelo<8 && cola.length){
   const im=cola.shift(); if(!im||!im.isConnected) continue;
   vuelo++;
   im.addEventListener('load',()=>{im.classList.add('on');vuelo--;siguiente();},{once:true});
@@ -189,7 +189,7 @@ function siguiente(){
   im.src=im.dataset.src;
  }
 }
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){io.unobserve(e.target);cola.push(e.target);siguiente();}}),{rootMargin:'500px'});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){io.unobserve(e.target);cola.push(e.target);siguiente();}}),{rootMargin:'900px'});
 const lazy=()=>document.querySelectorAll('img[data-src]:not([src])').forEach(im=>io.observe(im));
 const card=i=>{
  const price=i.p?fmt(i.p):'Consultar';
