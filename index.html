@@ -148,6 +148,7 @@ let ITEMS=[], BR=[], CT=[], FAM=[];
 async function cargar(){
  const t=await (await fetch(CSV,{cache:'no-store'})).text();
  const rows=parseCSV(t);
+ const PRECIOS={}; for(const rr of rows){ const k=(rr[8]||'').trim(); if(/^\d{5,}$/.test(k)&&rr[9]) PRECIOS[k]=rr[9]; }
  const vistos=new Set(); const out=[];
  for(const r of rows){
   const l=(r[2]||'').trim();
@@ -156,8 +157,9 @@ async function cargar(){
   if(/stone ?island/i.test(r[0]||'')) continue;
   let n=sinChino((r[0]||'').trim()).replace(/^[¥€$￥#\s]+/,'').replace(/\b\d{7,}\b/g,'').replace(/\(im[^)]*\)?/gi,'').replace(/\s+/g,' ').trim();
   n=n.replace(/goyard\s*(modelo)?/i,'Bolso ').replace(/\s+/g,' ').trim();
-  const p=money(r[1]);
   const a=(r[3]||'').trim();
+  const _ai=(a.match(/albums\/(\d+)/)||[])[1];
+  const p=(_ai&&PRECIOS[_ai])?money(PRECIOS[_ai]):money(r[1]);
   const b=marcaDe(n);
   let cf=catDe(n);
   let pf=p;
