@@ -75,6 +75,10 @@ aside::-webkit-scrollbar-thumb{background:var(--line)}
 .yo h3{font-family:Anton,sans-serif;font-weight:400;font-size:20px;text-transform:uppercase;letter-spacing:.02em;margin:0 0 10px}
 .yo p{font-size:14px;line-height:1.65;margin:0 0 10px;max-width:66ch}
 .yo .firma{font-size:13px;opacity:.65;margin:0}
+
+.tile .im{position:relative}
+.tile .im.tl-fb::after{content:attr(data-ini);position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:Anton,sans-serif;font-size:44px;color:#14120F;opacity:.16}
+.tile .im.tl-fb{background:repeating-linear-gradient(45deg,#E8E2D6 0 10px,#EDE8DD 10px 20px)}
 </style><style>
 .hero{border:2px solid var(--ink);background:var(--ink);color:var(--paper);padding:22px 20px;margin-bottom:18px}
 .hero h1{font-size:clamp(30px,5vw,52px);line-height:.95}
@@ -242,7 +246,7 @@ const card=i=>{
 };
 const PORTADA={'Ropa':/hellstar.*(hoodie|crewneck)|corteiz.*hoodie|gallery dept.*hoodie/i,'Bolsos y accesorios':/louis vuitton|goyard|dior/i,'Calzado':/travis scott|jordan 1.*(chicago|bred)|dunk.*panda/i};
 const port=(arr,fam)=>{const re=PORTADA[fam]; if(re){const p=arr.filter(x=>re.test(x.n)); const c=p.find(x=>x.a)||p[0]; if(c)return pic(c);} const conA=arr.find(x=>x.a)||arr[0];return conA?pic(conA):'';};
-const tile=(href,label,n,img,marca)=>'<a class="tile" href="'+href+'"><div class="im">'+(img?'<img loading="lazy" decoding="async" data-src="'+esc(img)+'" data-marca="'+esc(marca||label)+'" alt="">':'')+'</div><div class="tx"><b>'+esc(label)+'</b><em>'+n+'</em></div></a>';
+const tile=(href,label,n,img,marca)=>'<a class="tile" href="'+href+'"><div class="im" data-ini="'+esc((label||"?").trim().charAt(0).toUpperCase())+'">'+(img?'<img src="'+esc(img)+'" loading="eager" fetchpriority="high" decoding="async" alt="" onerror="this.parentNode.classList.add(\'tl-fb\');this.remove()">':'')+'</div><div class="tx"><b>'+esc(label)+'</b><em>'+n+'</em></div></a>';
 function sidebar(activo){
  const s=document.getElementById('side');
  let h='<button class="sclose" onclick="document.getElementById(\'side\').classList.remove(\'open\')">✕ Cerrar</button><div class="sgroup"><h3>Explorar</h3>'+
