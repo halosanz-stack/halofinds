@@ -239,14 +239,14 @@ const card=i=>{
  const price=i.p?fmt(i.p):'Consultar';
  const nombre=i.n.replace(' ★TOP','');
  return '<article class="card"><a class="thumb" href="'+esc(i.a||i.l)+'" target="_blank" rel="nofollow noopener">'+
-  '<img loading="lazy" decoding="async" src="'+esc(pic(i))+'" data-alt="/wimg?id='+esc(i.id)+'" data-marca="'+esc(i.b)+'" alt="">'+
+  '<img loading="lazy" decoding="async" onerror="this.style.visibility=&quot;hidden&quot;" src="'+esc(pic(i))+'" data-alt="/wimg?id='+esc(i.id)+'" data-marca="'+esc(i.b)+'" alt="">'+
   '<span class="tag">'+esc(i.b)+'</span>'+(i.top?'<span class="top">★ TOP</span>':'')+
   '</a><div class="body"><div class="name">'+esc(nombre)+'</div><div class="price">'+price+'</div>'+
   '<a class="buy" href="'+esc(i.l)+'" target="_blank" rel="nofollow noopener" onclick="return goBuy(event,this)">Comprar</a></div></article>';
 };
 const PORTADA={'Ropa':/hellstar.*(hoodie|crewneck)|corteiz.*hoodie|gallery dept.*hoodie/i,'Bolsos y accesorios':/louis vuitton|goyard|dior/i,'Calzado':/travis scott|jordan 1.*(chicago|bred)|dunk.*panda/i};
 const port=(arr,fam)=>{const re=PORTADA[fam]; if(re){const p=arr.filter(x=>re.test(x.n)); const c=p.find(x=>x.a)||p[0]; if(c)return pic(c);} const conA=arr.find(x=>x.a)||arr[0];return conA?pic(conA):'';};
-const tile=(href,label,n,img,marca)=>'<a class="tile" href="'+href+'"><div class="im">'+(img?'<img loading="lazy" decoding="async" src="'+esc(img)+'" data-marca="'+esc(marca||label)+'" alt="">':'')+'</div><div class="tx"><b>'+esc(label)+'</b><em>'+n+'</em></div></a>';
+const tile=(href,label,n,img,marca)=>'<a class="tile" href="'+href+'"><div class="im">'+(img?'<img loading="lazy" decoding="async" onerror="this.style.visibility=&quot;hidden&quot;" src="'+esc(img)+'" data-marca="'+esc(marca||label)+'" alt="">':'')+'</div><div class="tx"><b>'+esc(label)+'</b><em>'+n+'</em></div></a>';
 function sidebar(activo){
  const s=document.getElementById('side');
  let h='<button class="sclose" onclick="document.getElementById(\'side\').classList.remove(\'open\')">✕ Cerrar</button><div class="sgroup"><h3>Explorar</h3>'+
@@ -303,7 +303,7 @@ function render(reset){
  if(b) b.style.display = MOSTRADOS>=arr.length ? 'none':'block';
  lazy();
 }
-const guia='<div class="sec-h"><div class="yo"><h3>Quién hay detrás</h3><p>Esta hoja nació de cansarme de perder tardes entre capturas de Yupoo, links caídos y precios en yuanes que nadie convertía.</p><p>Cada pieza que hay aquí la he metido comprobando que el link abre el producto correcto. No es una lista copiada de otro sitio: está verificada una a una, y cuando algo se cae, lo quito.</p><p class="firma">Si encuentras un link roto o buscas algo que no está, escríbeme por TikTok: @halo.findss</p></div><h2>Por qué este agente</h2><span>y no otro</span></div><div class="steps">'+'<div class="step"><b>¥→€</b><h3>Cambio real</h3><p>CSSBuy te cobra al cambio real del yuan del día. Otros agentes de moda meten un cambio inflado y se llevan la diferencia sin que la veas.</p></div>'+'<div class="step"><b>0%</b><h3>Sin sobreprecio</h3><p>El precio del producto es el que pone el vendedor chino. No hay recargo escondido encima del artículo.</p></div>'+'<div class="step"><b>QC</b><h3>Fotos gratis</h3><p>Te mandan fotos reales de lo que compraste antes de enviarlo. Si no te gusta, se devuelve.</p></div>'+'<div class="step"><b>📦</b><h3>Envío a España</h3><p>Junta varias piezas en un envío. Rutas que llegan a España sin líos y con seguimiento.</p></div>'+'</div>'+'<div class="sec-h"><h2>Cómo comprar</h2><span>4 pasos</span></div><div class="steps">'+
+const guia='<div class="yo"><h3>Quién hay detrás</h3><p>Esta hoja nació de cansarme de perder tardes entre capturas de Yupoo, links caídos y precios en yuanes que nadie convertía.</p><p>Cada pieza que hay aquí la he metido comprobando que el link abre el producto correcto. No es una lista copiada de otro sitio: está verificada una a una, y cuando algo se cae, lo quito.</p><p class="firma">Si encuentras un link roto o buscas algo que no está, escríbeme por TikTok: @halo.findss</p></div><div class="sec-h"><h2>Por qué este agente</h2><span>y no otro</span></div><div class="steps">'+'<div class="step"><b>¥→€</b><h3>Cambio real</h3><p>CSSBuy te cobra al cambio real del yuan del día. Otros agentes de moda meten un cambio inflado y se llevan la diferencia sin que la veas.</p></div>'+'<div class="step"><b>0%</b><h3>Sin sobreprecio</h3><p>El precio del producto es el que pone el vendedor chino. No hay recargo escondido encima del artículo.</p></div>'+'<div class="step"><b>QC</b><h3>Fotos gratis</h3><p>Te mandan fotos reales de lo que compraste antes de enviarlo. Si no te gusta, se devuelve.</p></div>'+'<div class="step"><b>📦</b><h3>Envío a España</h3><p>Junta varias piezas en un envío. Rutas que llegan a España sin líos y con seguimiento.</p></div>'+'</div>'+'<div class="sec-h"><h2>Cómo comprar</h2><span>4 pasos</span></div><div class="steps">'+
  '<div class="step"><b>01</b><h3>Crea la cuenta</h3><p>Regístrate en CSSBuy. Es el agente: compra por ti en China y te lo manda a casa.</p></div>'+
  '<div class="step"><b>02</b><h3>Pulsa Comprar</h3><p>Abre cada pieza desde su ficha: así se carga siempre el producto correcto, con su talla y su precio.</p></div>'+
  '<div class="step"><b>03</b><h3>Almacén y QC</h3><p>Cuando llega al almacén te mandan fotos reales. Si algo no convence, se devuelve.</p></div>'+
@@ -377,7 +377,7 @@ cargar().then(ruta).catch(()=>{ main().innerHTML='<div class="hero"><h1>Error al
 <p>Si es tu <b>primera vez en CSSBuy</b>, crea la cuenta desde aqu&iacute;. Tardas 1 minuto y entras con cup&oacute;n de bienvenida.</p>
 <a class="gate-a" id="gate-reg" href="#" target="_blank" rel="nofollow noopener">Crear cuenta primero</a>
 <a class="gate-b" id="gate-go" href="#" target="_blank" rel="nofollow noopener" onclick="gateGo()">Ya tengo cuenta &rarr; ir al producto</a>
-<span class="gate-n">Se muestra una sola vez</span>
+<span class="gate-n">Si CSSBuy te pide iniciar sesión, hazlo y vuelve aquí a pulsar Comprar</span>
 </div></div>
 <script>
 (function(){var KEY="hf_gate_v1",pend=null;
