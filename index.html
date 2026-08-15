@@ -246,7 +246,7 @@ const card=i=>{
 };
 const PORTADA={'Ropa':/hellstar.*(hoodie|crewneck)|corteiz.*hoodie|gallery dept.*hoodie/i,'Bolsos y accesorios':/louis vuitton|goyard|dior/i,'Calzado':/travis scott|jordan 1.*(chicago|bred)|dunk.*panda/i};
 const port=(arr,fam)=>{const re=PORTADA[fam]; if(re){const p=arr.filter(x=>re.test(x.n)); const c=p.find(x=>x.a)||p[0]; if(c)return pic(c);} const conA=arr.find(x=>x.a)||arr[0];return conA?pic(conA):'';};
-const tile=(href,label,n,img,marca)=>'<a class="tile" href="'+href+'"><div class="im" data-ini="'+esc((label||"?").trim().charAt(0).toUpperCase())+'">'+(img?'<img src="'+esc(img)+'" loading="eager" fetchpriority="high" decoding="async" alt="" onerror="this.parentNode.classList.add(\'tl-fb\');this.remove()">':'')+'</div><div class="tx"><b>'+esc(label)+'</b><em>'+n+'</em></div></a>';
+const tile=(href,label,n,img,marca)=>'<a class="tile" href="'+href+'"><div class="im">'+(img?'<img loading="lazy" decoding="async" data-src="'+esc(img)+'" data-marca="'+esc(marca||label)+'" alt="">':'')+'</div><div class="tx"><b>'+esc(label)+'</b><em>'+n+'</em></div></a>';
 function sidebar(activo){
  const s=document.getElementById('side');
  let h='<button class="sclose" onclick="document.getElementById(\'side\').classList.remove(\'open\')">✕ Cerrar</button><div class="sgroup"><h3>Explorar</h3>'+
