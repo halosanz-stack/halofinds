@@ -46,7 +46,7 @@ aside::-webkit-scrollbar-thumb{background:var(--line)}
 .gate-box h3{font-family:Anton,sans-serif;font-weight:400;font-size:26px;text-transform:uppercase;letter-spacing:.02em;margin:0 0 10px}
 .gate-box p{font-size:14px;line-height:1.55;margin:0 0 18px}
 .gate-a{display:block;background:#C4332B;color:#fff;text-align:center;font-weight:700;padding:14px;text-decoration:none;font-size:15px}
-.gate-b{display:block;width:100%;background:none;border:1px solid #14120F;color:#14120F;padding:12px;margin-top:10px;font-size:14px;cursor:pointer;font-family:inherit}
+.gate-b{display:block;width:100%;text-align:center;text-decoration:none;box-sizing:border-box;background:none;border:1px solid #14120F;color:#14120F;padding:12px;margin-top:10px;font-size:14px;cursor:pointer;font-family:inherit}
 .gate-b:hover{background:#14120F;color:#F1EDE4}
 .gate-n{display:block;text-align:center;font-size:11px;opacity:.6;margin-top:12px}
 </style><style>
@@ -341,17 +341,17 @@ cargar().then(ruta).catch(()=>{ main().innerHTML='<div class="hero"><h1>Error al
 <h3>Antes de comprar</h3>
 <p>Si es tu <b>primera vez en CSSBuy</b>, crea la cuenta desde aqu&iacute;. Tardas 1 minuto y entras con cup&oacute;n de bienvenida.</p>
 <a class="gate-a" id="gate-reg" href="#" target="_blank" rel="nofollow noopener">Crear cuenta primero</a>
-<button class="gate-b" onclick="gateGo()">Ya tengo cuenta &rarr; ir al producto</button>
+<a class="gate-b" id="gate-go" href="#" target="_blank" rel="nofollow noopener" onclick="gateGo()">Ya tengo cuenta &rarr; ir al producto</a>
 <span class="gate-n">Se muestra una sola vez</span>
 </div></div>
 <script>
 (function(){var KEY="hf_gate_v1",pend=null;
 window.goBuy=function(ev,el){try{if(localStorage.getItem(KEY))return true;}catch(e){return true;}
 ev.preventDefault();pend=el.getAttribute("href");
-document.getElementById("gate-reg").setAttribute("href",REF);
+document.getElementById("gate-reg").setAttribute("href",REF);document.getElementById("gate-go").setAttribute("href",pend);
 document.getElementById("gate").hidden=false;document.body.style.overflow="hidden";return false;};
 function done(){try{localStorage.setItem(KEY,"1");}catch(e){}}
-window.gateGo=function(){done();if(pend)window.open(pend,"_blank","noopener");gateClose();};
+window.gateGo=function(){done();setTimeout(gateClose,60);};
 window.gateClose=function(){document.getElementById("gate").hidden=true;document.body.style.overflow="";};
 document.addEventListener("click",function(e){if(e.target&&e.target.id==="gate")gateClose();if(e.target&&e.target.closest&&e.target.closest("#gate-reg"))done();});
 document.addEventListener("keydown",function(e){if(e.key==="Escape")gateClose();});})();
