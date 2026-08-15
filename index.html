@@ -38,6 +38,17 @@ aside::-webkit-scrollbar-thumb{background:var(--line)}
 .brandbox::-webkit-scrollbar{width:5px}
 .brandbox::-webkit-scrollbar-thumb{background:var(--line)}
 .bfilter{width:100%;padding:6px 8px;border:1px solid var(--line);background:var(--paper);font-family:'JetBrains Mono',monospace;font-size:11px;margin-bottom:6px;outline:none}
+
+.gate{position:fixed;inset:0;background:rgba(20,18,15,.72);display:flex;align-items:center;justify-content:center;z-index:9999;padding:20px}
+.gate[hidden]{display:none}
+.gate-box{background:#F1EDE4;color:#14120F;max-width:400px;width:100%;padding:30px 26px 24px;position:relative;border:1px solid #14120F}
+.gate-x{position:absolute;top:8px;right:12px;background:none;border:0;font-size:26px;line-height:1;cursor:pointer;color:#14120F;padding:4px}
+.gate-box h3{font-family:Anton,sans-serif;font-weight:400;font-size:26px;text-transform:uppercase;letter-spacing:.02em;margin:0 0 10px}
+.gate-box p{font-size:14px;line-height:1.55;margin:0 0 18px}
+.gate-a{display:block;background:#C4332B;color:#fff;text-align:center;font-weight:700;padding:14px;text-decoration:none;font-size:15px}
+.gate-b{display:block;width:100%;background:none;border:1px solid #14120F;color:#14120F;padding:12px;margin-top:10px;font-size:14px;cursor:pointer;font-family:inherit}
+.gate-b:hover{background:#14120F;color:#F1EDE4}
+.gate-n{display:block;text-align:center;font-size:11px;opacity:.6;margin-top:12px}
 </style><style>
 .hero{border:2px solid var(--ink);background:var(--ink);color:var(--paper);padding:22px 20px;margin-bottom:18px}
 .hero h1{font-size:clamp(30px,5vw,52px);line-height:.95}
@@ -200,7 +211,7 @@ const card=i=>{
   '<img loading="lazy" decoding="async" data-src="'+esc(pic(i))+'" data-alt="/wimg?id='+esc(i.id)+'" data-marca="'+esc(i.b)+'" alt="">'+
   '<span class="tag">'+esc(i.b)+'</span>'+(i.top?'<span class="top">★ TOP</span>':'')+
   '</a><div class="body"><div class="name">'+esc(nombre)+'</div><div class="price">'+price+'</div>'+
-  '<a class="buy" href="'+esc(i.l)+'" target="_blank" rel="nofollow noopener">Comprar</a></div></article>';
+  '<a class="buy" href="'+esc(i.l)+'" target="_blank" rel="nofollow noopener" onclick="return goBuy(event,this)">Comprar</a></div></article>';
 };
 const PORTADA={'Ropa':/hellstar.*(hoodie|crewneck)|corteiz.*hoodie|gallery dept.*hoodie/i,'Bolsos y accesorios':/louis vuitton|goyard|dior/i,'Calzado':/travis scott|jordan 1.*(chicago|bred)|dunk.*panda/i};
 const port=(arr,fam)=>{const re=PORTADA[fam]; if(re){const p=arr.filter(x=>re.test(x.n)); const c=p.find(x=>x.a)||p[0]; if(c)return pic(c);} const conA=arr.find(x=>x.a)||arr[0];return conA?pic(conA):'';};
@@ -322,6 +333,28 @@ window.addEventListener('scroll',()=>{
  if(b && b.style.display!=='none' && b.getBoundingClientRect().top < window.innerHeight+400) render(false);
 });
 cargar().then(ruta).catch(()=>{ main().innerHTML='<div class="hero"><h1>Error al cargar</h1><p>Recarga la página.</p></div>'; });
+</script>
+
+<div id="gate" class="gate" hidden>
+<div class="gate-box" role="dialog" aria-modal="true">
+<button class="gate-x" onclick="gateClose()" aria-label="Cerrar">&times;</button>
+<h3>Antes de comprar</h3>
+<p>Si es tu <b>primera vez en CSSBuy</b>, crea la cuenta desde aqu&iacute;. Tardas 1 minuto y entras con cup&oacute;n de bienvenida.</p>
+<a class="gate-a" id="gate-reg" href="#" target="_blank" rel="nofollow noopener">Crear cuenta primero</a>
+<button class="gate-b" onclick="gateGo()">Ya tengo cuenta &rarr; ir al producto</button>
+<span class="gate-n">Se muestra una sola vez</span>
+</div></div>
+<script>
+(function(){var KEY="hf_gate_v1",pend=null;
+window.goBuy=function(ev,el){try{if(localStorage.getItem(KEY))return true;}catch(e){return true;}
+ev.preventDefault();pend=el.getAttribute("href");
+document.getElementById("gate-reg").setAttribute("href",REF);
+document.getElementById("gate").hidden=false;document.body.style.overflow="hidden";return false;};
+function done(){try{localStorage.setItem(KEY,"1");}catch(e){}}
+window.gateGo=function(){done();if(pend)window.open(pend,"_blank","noopener");gateClose();};
+window.gateClose=function(){document.getElementById("gate").hidden=true;document.body.style.overflow="";};
+document.addEventListener("click",function(e){if(e.target&&e.target.id==="gate")gateClose();if(e.target&&e.target.closest&&e.target.closest("#gate-reg"))done();});
+document.addEventListener("keydown",function(e){if(e.key==="Escape")gateClose();});})();
 </script>
 </body>
 </html>
