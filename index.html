@@ -187,8 +187,7 @@ const catDe=n=>{for(const[r,c,f]of CATS)if(r.test(n))return[c,f];return['Otros',
 function parseCSV(t){const R=[];let r=[],c='',q=false;for(let i=0;i<t.length;i++){const ch=t[i];if(q){if(ch==='"'){if(t[i+1]==='"'){c+='"';i++;}else q=false;}else c+=ch;}else if(ch==='"')q=true;else if(ch===','){r.push(c);c='';}else if(ch==='\n'){r.push(c);R.push(r);r=[];c='';}else if(ch!=='\r')c+=ch;}r.push(c);R.push(r);return R;}
 let ITEMS=[], BR=[], CT=[], FAM=[];
 async function cargar(){
- let t=''; try{ const rr=await fetch('/data'); if(rr.ok){ t=await rr.text(); } }catch(e){}
- if(t.length<50000){ t=await (await fetch(CSV,{cache:'no-store'})).text(); }
+ const t=await (await fetch(CSV,{cache:'no-store'})).text();
  const rows=parseCSV(t);
  const PRECIOS={}; for(const rr of rows){ const k=(rr[8]||'').trim(); if(/^\d{5,}$/.test(k)&&rr[9]) PRECIOS[k]=rr[9]; }
  const vistos=new Set(); const out=[];
