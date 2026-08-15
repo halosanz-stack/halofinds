@@ -65,6 +65,16 @@ aside::-webkit-scrollbar-thumb{background:var(--line)}
 .gate-b{display:block;width:100%;text-align:center;text-decoration:none;box-sizing:border-box;background:none;border:1px solid #14120F;color:#14120F;padding:12px;margin-top:10px;font-size:14px;cursor:pointer;font-family:inherit}
 .gate-b:hover{background:#14120F;color:#F1EDE4}
 .gate-n{display:block;text-align:center;font-size:11px;opacity:.6;margin-top:12px}
+
+.up{position:fixed;right:18px;bottom:18px;width:46px;height:46px;background:#14120F;color:#F1EDE4;border:0;font-size:20px;line-height:46px;text-align:center;cursor:pointer;z-index:50;opacity:0;pointer-events:none;transition:opacity .2s;border-radius:2px}
+.up.on{opacity:.92;pointer-events:auto}
+.up:hover{opacity:1}
+@media(max-width:900px){.up{right:12px;bottom:12px}}
+
+.yo{border:1px solid var(--line,#d8d2c6);padding:22px 24px;margin:34px 0 8px;background:transparent}
+.yo h3{font-family:Anton,sans-serif;font-weight:400;font-size:20px;text-transform:uppercase;letter-spacing:.02em;margin:0 0 10px}
+.yo p{font-size:14px;line-height:1.65;margin:0 0 10px;max-width:66ch}
+.yo .firma{font-size:13px;opacity:.65;margin:0}
 </style><style>
 .hero{border:2px solid var(--ink);background:var(--ink);color:var(--paper);padding:22px 20px;margin-bottom:18px}
 .hero h1{font-size:clamp(30px,5vw,52px);line-height:.95}
@@ -289,7 +299,7 @@ function render(reset){
  if(b) b.style.display = MOSTRADOS>=arr.length ? 'none':'block';
  lazy();
 }
-const guia='<div class="sec-h"><h2>Por qué este agente</h2><span>y no otro</span></div><div class="steps">'+'<div class="step"><b>¥→€</b><h3>Cambio real</h3><p>CSSBuy te cobra al cambio real del yuan del día. Otros agentes de moda meten un cambio inflado y se llevan la diferencia sin que la veas.</p></div>'+'<div class="step"><b>0%</b><h3>Sin sobreprecio</h3><p>El precio del producto es el que pone el vendedor chino. No hay recargo escondido encima del artículo.</p></div>'+'<div class="step"><b>QC</b><h3>Fotos gratis</h3><p>Te mandan fotos reales de lo que compraste antes de enviarlo. Si no te gusta, se devuelve.</p></div>'+'<div class="step"><b>📦</b><h3>Envío a España</h3><p>Junta varias piezas en un envío. Rutas que llegan a España sin líos y con seguimiento.</p></div>'+'</div>'+'<div class="sec-h"><h2>Cómo comprar</h2><span>4 pasos</span></div><div class="steps">'+
+const guia='<div class="sec-h"><div class="yo"><h3>Quién hay detrás</h3><p>Soy Hugo, tengo 20 años y estudio en Madrid. Empecé esta hoja porque me cansé de perder tardes entre capturas de Yupoo, links caídos y precios en yuanes que nadie convertía.</p><p>Cada pieza que hay aquí la he metido comprobando que el link abre el producto correcto. No es una lista copiada de otro sitio: está verificada una a una, y cuando algo se cae, lo quito.</p><p class="firma">Si encuentras un link roto o buscas algo que no está, escríbeme por TikTok: @halo.findss</p></div><h2>Por qué este agente</h2><span>y no otro</span></div><div class="steps">'+'<div class="step"><b>¥→€</b><h3>Cambio real</h3><p>CSSBuy te cobra al cambio real del yuan del día. Otros agentes de moda meten un cambio inflado y se llevan la diferencia sin que la veas.</p></div>'+'<div class="step"><b>0%</b><h3>Sin sobreprecio</h3><p>El precio del producto es el que pone el vendedor chino. No hay recargo escondido encima del artículo.</p></div>'+'<div class="step"><b>QC</b><h3>Fotos gratis</h3><p>Te mandan fotos reales de lo que compraste antes de enviarlo. Si no te gusta, se devuelve.</p></div>'+'<div class="step"><b>📦</b><h3>Envío a España</h3><p>Junta varias piezas en un envío. Rutas que llegan a España sin líos y con seguimiento.</p></div>'+'</div>'+'<div class="sec-h"><h2>Cómo comprar</h2><span>4 pasos</span></div><div class="steps">'+
  '<div class="step"><b>01</b><h3>Crea la cuenta</h3><p>Regístrate en CSSBuy. Es el agente: compra por ti en China y te lo manda a casa.</p></div>'+
  '<div class="step"><b>02</b><h3>Pulsa Comprar</h3><p>Abre cada pieza desde su ficha: así se carga siempre el producto correcto, con su talla y su precio.</p></div>'+
  '<div class="step"><b>03</b><h3>Almacén y QC</h3><p>Cuando llega al almacén te mandan fotos reales. Si algo no convence, se devuelve.</p></div>'+
@@ -344,7 +354,10 @@ document.getElementById('q').addEventListener('input',e=>{
 });
 document.getElementById('mbtn').onclick=()=>document.getElementById('side').classList.toggle('open');
 document.getElementById('side').addEventListener('click',e=>{if(e.target.closest('.slink'))document.getElementById('side').classList.remove('open');});
-window.addEventListener('hashchange',ruta);
+var POS={};
+window.addEventListener('hashchange',function(){ ruta(); var y=POS[location.hash]; window.scrollTo(0, y||0); });
+window.addEventListener('scroll',function(){ POS[location.hash]=window.scrollY; var u=document.getElementById('up'); if(u) u.classList.toggle('on', window.scrollY>700); },{passive:true});
+document.getElementById('up').onclick=function(){ window.scrollTo({top:0,behavior:'smooth'}); };
 window.addEventListener('scroll',()=>{
  const b=document.getElementById('more');
  if(b && b.style.display!=='none' && b.getBoundingClientRect().top < window.innerHeight+400) render(false);
@@ -352,6 +365,7 @@ window.addEventListener('scroll',()=>{
 cargar().then(ruta).catch(()=>{ main().innerHTML='<div class="hero"><h1>Error al cargar</h1><p>Recarga la página.</p></div>'; });
 </script>
 
+<button class="up" id="up" aria-label="Volver arriba" title="Volver arriba">↑</button>
 <div id="gate" class="gate" hidden>
 <div class="gate-box" role="dialog" aria-modal="true">
 <button class="gate-x" onclick="gateClose()" aria-label="Cerrar">&times;</button>
