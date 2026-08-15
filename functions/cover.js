@@ -28,7 +28,8 @@ export async function onRequest({ request, waitUntil }) {
     if (!m) return miss('sin foto');
 
     let img = m[1].startsWith('//') ? 'https:' + m[1] : m[1];
-    img = img.replace(/\/(small|thumb)\.(jpe?g|png|webp)$/i, '/medium.$2');
+    const mini = new URL(request.url).searchParams.get('s') === 's';
+    img = mini ? img.replace(/\/(medium|large|raw)\.(jpe?g|png|webp)$/i, '/small.$2') : img.replace(/\/(small|thumb)\.(jpe?g|png|webp)$/i, '/medium.$2');
 
     const up = await fetch(img, {
       headers: { 'User-Agent': UA, 'Referer': album.origin + '/', 'Accept': 'image/avif,image/webp,image/*,*/*;q=0.8' },
