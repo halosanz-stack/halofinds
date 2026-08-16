@@ -206,7 +206,7 @@ async function cargar(){
   const m=l.match(/item-micro-(\d+)/)||(l.match(/item-(\d+)\.html/)&&!/item-long/.test(l)?l.match(/item-(\d+)\.html/):null); if(!m) continue;
   if(vistos.has(m[1])) continue; vistos.add(m[1]);
   if(/stone ?island/i.test(r[0]||'')) continue;
-  let n=sinChino((r[0]||'').trim()).replace(/^[¥€$￥#\s]+/,'').replace(/\b\d{7,}\b/g,'').replace(/\(im[^)]*\)?/gi,'').replace(/\s+/g,' ').trim();
+  let n=sinChino((r[0]||'').trim()).replace(/^[¥€$￥#\s]+/,'').replace(/\b\d{7,}\b/g,'').replace(/\(im[^)]*\)?/gi,'').replace(/^[\uff5e~]\s*\d+\s*/,'').replace(/[\uff08\uff09]/g,' ').replace(/\b\d{2}(?:\.\d)?-\d{2}(?:\.\d)?\b/g,'').replace(/^[\s\-\u00b7,]+/,'').replace(/\s+/g,' ').trim();
   n=n.replace(/goyard\s*(modelo)?/i,'Bolso ').replace(/\s+/g,' ').trim();
   const a=(r[3]||'').trim();
   const _ai=(a.match(/albums\/(\d+)/)||[])[1];
