@@ -79,6 +79,14 @@ aside::-webkit-scrollbar-thumb{background:var(--line)}
 .tile .im{position:relative}
 .tile .im.tl-fb::after{content:attr(data-ini);position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:Anton,sans-serif;font-size:44px;color:#14120F;opacity:.16}
 .tile .im.tl-fb{background:repeating-linear-gradient(45deg,#E8E2D6 0 10px,#EDE8DD 10px 20px)}
+
+.hot{margin:0 0 22px}
+.hot-t{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:9px}
+.hot-w{display:flex;gap:8px;flex-wrap:wrap}
+.hot-w a{font-family:'Anton',sans-serif;font-size:15px;letter-spacing:.03em;text-transform:uppercase;padding:9px 14px;border:1px solid var(--ink);color:var(--ink);text-decoration:none;background:var(--card);transition:all .12s}
+.hot-w a:hover{background:var(--ink);color:var(--card)}
+.hot-w a.on{background:var(--stamp);color:#fff;border-color:var(--stamp)}
+.hot-w a.on:hover{background:var(--ink);border-color:var(--ink)}
 </style><style>
 .hero{border:2px solid var(--ink);background:var(--ink);color:var(--paper);padding:22px 20px;margin-bottom:18px}
 .hero h1{font-size:clamp(30px,5vw,52px);line-height:.95}
@@ -323,6 +331,7 @@ function home(){
   '<div class="stat"><b>'+BR.length+'</b><span>marcas</span></div>'+
   '<div class="stat"><b>'+CT.length+'</b><span>categorías</span></div></div></div>';
  h+='<div class="cta"><div><b>Primera compra en CSSBuy</b><p>Crea la cuenta desde aquí y entras con cupón de bienvenida.</p></div><a href="'+REF+'" target="_blank" rel="nofollow noopener">Crear cuenta</a></div>';
+ h+='<div class="hot"><div class="hot-t">Lo más buscado</div><div class="hot-w"><a class="on" href="#/m/nike">Nike</a><a class="on" href="#/m/corteiz">Corteiz</a><a class="" href="#/m/gallery-dept">Gallery Dept</a><a class="on" href="#/m/hellstar">Hellstar</a><a class="" href="#/m/amiri">Amiri</a><a class="on" href="#/m/travis-scott">Travis Scott</a><a class="" href="#/m/bape">Bape</a><a class="" href="#/m/chrome-hearts">Chrome Hearts</a></div></div>';
  h+='<div class="sec-h"><h2>Explora</h2><span>por tipo</span></div><div class="tiles">'+FAM.map(f=>tile('#/f/'+slug(f[0]),f[0],f[1].length,port(f[1],f[0]),f[0])).join('')+'</div>';
  if(dest.length) h+='<div class="sec-h"><h2>Mejor batch</h2><span>★ top del mercado</span></div><div class="grid">'+dest.map(card).join('')+'</div>';
  h+='<div class="sec-h"><h2>Marcas</h2><span>'+BR.length+' en total</span></div><div class="tiles" id="brandtiles">'+BR.slice(0,20).map(b=>tile('#/m/'+slug(b[0]),b[0],b[1].length,port(b[1]),b[0])).join('')+'</div><button class="more" onclick="document.getElementById(\'brandtiles\').innerHTML=window.__ALLBR;lazy();this.style.display=\'none\'">Ver las '+BR.length+' marcas</button>';
