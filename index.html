@@ -281,7 +281,7 @@ const card=i=>{
  const price=i.p?fmt(i.p):'Consultar';
  const nombre=i.n.replace(' ★TOP','');
  return '<article class="card"><a class="thumb" href="'+esc(i.a||i.l)+'" target="_blank" rel="nofollow noopener">'+
-  '<img loading="lazy" decoding="async" onerror="this.style.visibility=&quot;hidden&quot;" src="'+esc(pic(i))+(pic(i).indexOf("/cover")===0?"&s=s":"")+'" data-alt="/wimg?id='+esc(i.id)+'" data-marca="'+esc(i.b)+'" alt="">'+
+  '<img loading="lazy" decoding="async" onerror="var a=this.getAttribute(&quot;data-alt&quot;);if(a){this.removeAttribute(&quot;data-alt&quot;);this.src=a;}else{this.style.visibility=&quot;hidden&quot;;}" src="'+esc(pic(i))+(pic(i).indexOf("/cover")===0?"&s=s":"")+'" data-alt="/wimg?id='+esc(i.id)+'" data-marca="'+esc(i.b)+'" alt="">'+
   '<span class="tag">'+esc(i.b)+'</span>'+(i.top?'<span class="top">★ TOP</span>':'')+
   '</a><div class="body"><div class="name">'+esc(nombre)+'</div><div class="price">'+price+'</div>'+
   '<a class="buy" href="'+esc(i.l)+'" target="_blank" rel="nofollow noopener" onclick="return goBuy(event,this)">Comprar</a></div></article>';
