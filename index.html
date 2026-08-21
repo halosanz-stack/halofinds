@@ -87,6 +87,39 @@ aside::-webkit-scrollbar-thumb{background:var(--line)}
 .hot-w a:hover{background:var(--ink);color:var(--card)}
 .hot-w a.on{background:var(--stamp);color:#fff;border-color:var(--stamp)}
 .hot-w a.on:hover{background:var(--ink);border-color:var(--ink)}
+
+:root{--r:18px;--r-sm:12px;--sh:0 1px 2px rgba(20,18,15,.05),0 8px 24px rgba(20,18,15,.07);--sh-h:0 4px 12px rgba(20,18,15,.09),0 18px 44px rgba(20,18,15,.13)}
+body{background:#F6F4EF}
+.card{border:0!important;border-radius:var(--r);box-shadow:var(--sh);background:#fff;transition:transform .22s cubic-bezier(.2,.8,.2,1),box-shadow .22s}
+.card:hover{transform:translateY(-5px);box-shadow:var(--sh-h)}
+.card .im{border-radius:var(--r) var(--r) 0 0;overflow:hidden;background:#F1EEE8}
+.card img{transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.card:hover img{transform:scale(1.06)}
+.tile{border:0!important;border-radius:var(--r);box-shadow:var(--sh);background:#fff;transition:transform .22s,box-shadow .22s}
+.tile:hover{transform:translateY(-4px);box-shadow:var(--sh-h)}
+.tile .im{border-radius:var(--r) var(--r) 0 0;overflow:hidden}
+.buy{border-radius:0 0 var(--r) var(--r);padding:14px 9px!important;font-size:11.5px!important}
+.buy:hover{background:var(--stamp)}
+.search input{border:1px solid var(--line)!important;border-radius:999px;padding:12px 18px!important;background:#fff;box-shadow:var(--sh)}
+.search input:focus{border-color:var(--stamp)!important;box-shadow:0 0 0 3px rgba(196,51,43,.13)}
+header{border-bottom:1px solid var(--line);background:rgba(246,244,239,.88);backdrop-filter:saturate(180%) blur(14px)}
+.hero,.cta,.yo,.step,.gate-box{border-radius:var(--r)!important}
+.cta{border:0!important;box-shadow:var(--sh);background:#fff}
+.cta a{border-radius:999px}
+.hot-w a{border-radius:999px;border:1px solid var(--line)!important;box-shadow:var(--sh)}
+.chip,.gate-a,.gate-b,.more,.btn-menu{border-radius:999px!important}
+.up{border-radius:50%!important}
+.grid{gap:18px!important}
+@media(max-width:900px){
+ .grid{grid-template-columns:repeat(auto-fill,minmax(158px,1fr))!important;gap:12px!important}
+ .buy{padding:16px 9px!important;font-size:12px!important}
+ .hot-w a{padding:12px 17px!important}
+ .search input{padding:14px 18px!important;font-size:16px!important}
+ .card{border-radius:var(--r-sm)}
+ .card .im{border-radius:var(--r-sm) var(--r-sm) 0 0}
+ .buy{border-radius:0 0 var(--r-sm) var(--r-sm)}
+ .slink{padding:13px 10px!important}
+}
 </style><style>
 .hero{border:2px solid var(--ink);background:var(--ink);color:var(--paper);padding:22px 20px;margin-bottom:18px}
 .hero h1{font-size:clamp(30px,5vw,52px);line-height:.95}
