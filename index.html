@@ -287,8 +287,8 @@ const card=i=>{
   '<a class="buy" href="'+esc(i.l)+'" target="_blank" rel="nofollow noopener" onclick="return goBuy(event,this)">Comprar</a></div></article>';
 };
 const PORTADA={'Ropa':/hellstar.*(hoodie|crewneck)|corteiz.*hoodie|gallery dept.*hoodie/i,'Bolsos y accesorios':/louis vuitton|goyard|dior/i,'Calzado':/travis scott|jordan 1.*(chicago|bred)|dunk.*panda/i};
-const port=(arr,fam)=>{const re=PORTADA[fam]; if(re){const p=arr.filter(x=>re.test(x.n)); const c=p.find(x=>x.a)||p[0]; if(c)return pic(c);} const conA=arr.find(x=>x.a)||arr[0];return conA?pic(conA):'';};
-const tile=(href,label,n,img,marca)=>'<a class="tile" href="'+href+'"><div class="im">'+(img?'<img loading="lazy" decoding="async" onerror="this.style.visibility=&quot;hidden&quot;" src="'+esc(img)+(img.indexOf("/cover")===0?"&s=s":"")+'" data-marca="'+esc(marca||label)+'" alt="">':'')+'</div><div class="tx"><b>'+esc(label)+'</b><em>'+n+'</em></div></a>';
+const port=(arr,fam)=>{const re=PORTADA[fam];let c=[];if(re){c=arr.filter(x=>re.test(x.n)&&x.a);}if(c.length<4){c=c.concat(arr.filter(x=>x.a&&c.indexOf(x)<0));}return c.slice(0,4).map(x=>pic(x)).join("|");};
+const tile=(href,label,n,img,marca)=>{const L=(img||"").split("|").filter(Boolean);const p=L[0]||"";const r=L.slice(1).join("|");return '<a class="tile" href="'+href+'"><div class="im">'+(p?'<img loading="eager" decoding="async" data-fb="'+esc(r)+'" onerror="var f=this.dataset.fb;if(f){var a=f.split(String.fromCharCode(124));this.dataset.fb=a.slice(1).join(String.fromCharCode(124));this.src=a[0];}else{this.style.visibility=String.fromCharCode(104,105,100,100,101,110);}" src="'+esc(p)+(p.indexOf("/cover")===0?"&s=s":"")+'" alt="">':'')+'</div><div class="tx"><b>'+esc(label)+'</b><em>'+n+'</em></div></a>';};
 function sidebar(activo){
  const s=document.getElementById('side');
  let h='<button class="sclose" onclick="document.getElementById(\'side\').classList.remove(\'open\')">✕ Cerrar</button><div class="sgroup"><h3>Explorar</h3>'+
